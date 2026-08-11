@@ -1,13 +1,12 @@
-/* =========================================
-   MOTHER'S DAY
-   MEMORY BOOK
+/* =====================================================
+   MOTHER'S DAY MEMORY BOOK
    12 AUGUST 2026
-========================================= */
+===================================================== */
 
 
-/* =========================================
-   ELEMENTS
-========================================= */
+/* =====================================================
+   GET ELEMENTS
+===================================================== */
 
 const pages =
     document.querySelectorAll(".page");
@@ -21,30 +20,68 @@ const musicButton =
 const envelope =
     document.getElementById("envelope");
 
-const openEnvelope =
-    document.getElementById("openEnvelope");
+const openLetterButton =
+    document.getElementById(
+        "openLetterButton"
+    );
+
+const startButton =
+    document.getElementById(
+        "startButton"
+    );
+
+const giftBox =
+    document.getElementById(
+        "giftBox"
+    );
+
+const finalMessage =
+    document.getElementById(
+        "finalMessage"
+    );
+
+const timelineButton =
+    document.getElementById(
+        "timelineButton"
+    );
+
+const albumButton =
+    document.getElementById(
+        "albumButton"
+    );
 
 
-/* =========================================
+/* =====================================================
    PAGE SYSTEM
-========================================= */
+===================================================== */
 
-function showPage(id) {
+function showPage(pageId) {
 
     pages.forEach(page => {
 
-        page.classList.remove("active");
+        page.classList.remove(
+            "active"
+        );
 
     });
 
 
-    const page =
-        document.getElementById(id);
+    const target =
+        document.getElementById(
+            pageId
+        );
 
-    if (!page) return;
+
+    if (!target) {
+
+        return;
+
+    }
 
 
-    page.classList.add("active");
+    target.classList.add(
+        "active"
+    );
 
 
     window.scrollTo({
@@ -58,61 +95,91 @@ function showPage(id) {
 }
 
 
-/* =========================================
+/* =====================================================
    MUSIC
-========================================= */
+===================================================== */
 
-let musicPlaying = false;
+/*
+    สำคัญ:
+
+    เพลงจะเริ่มจากการกด
+    "เปิดจดหมายจากลูก"
+
+    เพราะมือถือจะยอมให้เพลงเล่น
+    หลังจากผู้ใช้มี interaction
+*/
 
 
 function startMusic() {
 
-    music.volume = 0.35;
+    music.volume = 0.4;
 
 
-    music.play()
+    const playPromise =
+        music.play();
 
-        .then(() => {
 
-            musicPlaying = true;
+    if (
+        playPromise !== undefined
+    ) {
 
-            musicButton.textContent =
-                "♫";
+        playPromise
+            .then(() => {
 
-        })
+                musicButton.textContent =
+                    "🔊";
 
-        .catch(() => {
+            })
 
-            console.log(
-                "Browser blocked music."
-            );
+            .catch(() => {
 
-        });
+                musicButton.textContent =
+                    "🔇";
+
+            });
+
+    }
 
 }
 
 
+/* =====================================================
+   MUSIC BUTTON
+===================================================== */
+
 musicButton.addEventListener(
     "click",
-    () => {
+    function(event) {
 
-        if (music.paused) {
+        event.stopPropagation();
 
-            music.play();
 
-            musicPlaying = true;
+        if (
+            music.paused
+        ) {
 
-            musicButton.textContent =
-                "♫";
+            music.play()
+                .then(() => {
 
-        } else {
+                    musicButton.textContent =
+                        "🔊";
+
+                })
+                .catch(() => {
+
+                    musicButton.textContent =
+                        "🔇";
+
+                });
+
+        }
+
+        else {
 
             music.pause();
 
-            musicPlaying = false;
-
             musicButton.textContent =
-                "♪";
+                "🔇";
 
         }
 
@@ -120,135 +187,175 @@ musicButton.addEventListener(
 );
 
 
-/* =========================================
-   OPEN ENVELOPE
-========================================= */
+/* =====================================================
+   OPEN LETTER
+===================================================== */
+
+let letterOpened = false;
+
 
 function openLetter() {
 
-    if (
-        envelope.classList.contains("open")
-    ) {
+    if (letterOpened) {
 
         return;
 
     }
 
 
-    envelope.classList.add("open");
+    letterOpened = true;
 
 
-    /* เริ่มเพลงหลังจากการคลิก */
+    /*
+       ต้องเรียก play()
+       จากการกดของผู้ใช้โดยตรง
+    */
 
     startMusic();
+
+
+    envelope.classList.add(
+        "open"
+    );
 
 
     createHearts();
 
 
-    setTimeout(() => {
+    setTimeout(
+        function() {
 
-        showPage("introPage");
+            showPage(
+                "pageIntro"
+            );
 
-    }, 1300);
+        },
+        1000
+    );
 
 }
 
 
-openEnvelope.addEventListener(
-    "click",
-    openLetter
-);
-
-envelope.addEventListener(
+openLetterButton.addEventListener(
     "click",
     openLetter
 );
 
 
-/* =========================================
-   START MEMORY
-========================================= */
+/* =====================================================
+   INTRO
+===================================================== */
 
-document
-    .getElementById("startMemory")
-    .addEventListener(
-        "click",
-        () => {
+startButton.addEventListener(
+    "click",
+    function() {
 
-            showPage("message1");
+        showPage(
+            "pageMessage1"
+        );
 
-        }
-    );
+    }
+);
 
 
-/* =========================================
-   MESSAGE REVEAL
-========================================= */
+/* =====================================================
+   MESSAGE SYSTEM
+===================================================== */
 
 const messageButtons =
     document.querySelectorAll(
-        ".open-message"
+        ".message-button"
     );
 
 
-messageButtons.forEach(button => {
+messageButtons.forEach(
+    function(button) {
 
-    button.addEventListener(
-        "click",
-        () => {
+        button.addEventListener(
+            "click",
+            function() {
 
-            const target =
-                button.dataset.target;
-
-
-            const message =
-                document.querySelector(
-                    `.secret-message[data-message="${target}"]`
-                );
+                const number =
+                    button.dataset.message;
 
 
-            if (!message) return;
-
-
-            message.classList.add("show");
-
-
-            button.style.display =
-                "none";
-
-
-            const next =
-                button.parentElement
-                    .querySelector(
-                        ".next-button"
+                const content =
+                    document.getElementById(
+                        "messageContent" +
+                        number
                     );
 
 
-            if (next) {
+                if (!content) {
 
-                setTimeout(() => {
+                    return;
 
-                    next.classList.remove(
-                        "hidden"
+                }
+
+
+                /*
+                   เปิดข้อความ
+                */
+
+                content.style.animation =
+                    "reveal .7s ease";
+
+
+                createHearts();
+
+
+                /*
+                   เปลี่ยนปุ่ม
+                */
+
+                button.textContent =
+                    "💙 อ่านแล้ว";
+
+
+                button.disabled =
+                    true;
+
+
+                button.style.opacity =
+                    "0.65";
+
+
+                /*
+                   แสดงปุ่มหน้าต่อไป
+                */
+
+                const next =
+                    button.parentElement
+                        .querySelector(
+                            ".next-button"
+                        );
+
+
+                if (next) {
+
+                    setTimeout(
+                        function() {
+
+                            next.classList.remove(
+                                "hidden"
+                            );
+
+                        },
+                        500
                     );
 
-                }, 900);
+                }
 
             }
+        );
+
+    }
+);
 
 
-            createHearts();
-
-        }
-    );
-
-});
-
-
-/* =========================================
-   NEXT BUTTONS
-========================================= */
+/* =====================================================
+   NEXT PAGE
+===================================================== */
 
 const nextButtons =
     document.querySelectorAll(
@@ -256,60 +363,54 @@ const nextButtons =
     );
 
 
-nextButtons.forEach(button => {
+nextButtons.forEach(
+    function(button) {
 
-    button.addEventListener(
-        "click",
-        () => {
+        button.addEventListener(
+            "click",
+            function() {
 
-            const nextPage =
-                button.dataset.next;
-
-
-            showPage(nextPage);
-
-        }
-    );
-
-});
+                const nextPage =
+                    button.dataset.next;
 
 
-/* =========================================
-   SECRET GIFT
-========================================= */
+                showPage(
+                    nextPage
+                );
 
-const gift =
-    document.getElementById("gift");
+            }
+        );
 
-const secretText =
-    document.getElementById("secretText");
+    }
+);
 
-const timelineButton =
-    document.getElementById(
-        "timelineButton"
-    );
 
+/* =====================================================
+   GIFT
+===================================================== */
 
 let giftOpened = false;
 
 
-gift.addEventListener(
+giftBox.addEventListener(
     "click",
-    () => {
+    function() {
 
-        if (giftOpened) return;
+        if (giftOpened) {
+
+            return;
+
+        }
 
 
         giftOpened = true;
 
 
-        const box =
-            gift.querySelector(
-                ".gift-box"
-            );
+        giftBox.style.animation =
+            "none";
 
 
-        box.style.transform =
+        giftBox.style.transform =
             "scale(1.15) rotate(-5deg)";
 
 
@@ -318,36 +419,49 @@ gift.addEventListener(
         createConfetti();
 
 
-        setTimeout(() => {
+        setTimeout(
+            function() {
 
-            secretText.classList.remove(
-                "hidden"
-            );
-
-
-            timelineButton.classList.remove(
-                "hidden"
-            );
+                giftBox.style.display =
+                    "none";
 
 
-            gift.style.display =
-                "none";
+                finalMessage.classList.remove(
+                    "hidden"
+                );
 
-        }, 700);
+
+                setTimeout(
+                    function() {
+
+                        timelineButton.classList.remove(
+                            "hidden"
+                        );
+
+                    },
+                    500
+                );
+
+            },
+            600
+        );
 
     }
 );
 
 
-/* =========================================
+/* =====================================================
    TIMELINE
-========================================= */
+===================================================== */
 
 timelineButton.addEventListener(
     "click",
-    () => {
+    function() {
 
-        showPage("timelinePage");
+        showPage(
+            "pageTimeline"
+        );
+
 
         createHearts();
 
@@ -355,41 +469,44 @@ timelineButton.addEventListener(
 );
 
 
-/* =========================================
+/* =====================================================
    ALBUM
-========================================= */
+===================================================== */
 
-document
-    .getElementById("albumButton")
-    .addEventListener(
-        "click",
-        () => {
+albumButton.addEventListener(
+    "click",
+    function() {
 
-            showPage("albumPage");
-
-            createConfetti();
-
-        }
-    );
+        showPage(
+            "pageAlbum"
+        );
 
 
-/* =========================================
+        createConfetti();
+
+        createHearts();
+
+    }
+);
+
+
+/* =====================================================
    HEART EFFECT
-========================================= */
+===================================================== */
 
 function createHearts() {
 
     const symbols = [
         "💙",
-        "♡",
         "🤍",
+        "♡",
         "✦"
     ];
 
 
     for (
         let i = 0;
-        i < 12;
+        i < 14;
         i++
     ) {
 
@@ -400,7 +517,7 @@ function createHearts() {
 
 
         heart.className =
-            "heart-effect";
+            "effect-heart";
 
 
         heart.textContent =
@@ -419,14 +536,15 @@ function createHearts() {
 
 
         heart.style.top =
-            65 +
-            Math.random() *
-            25 +
+            (
+                55 +
+                Math.random() * 35
+            ) +
             "vh";
 
 
         heart.style.setProperty(
-            "--x",
+            "--moveX",
             (
                 Math.random() * 160 -
                 80
@@ -440,35 +558,38 @@ function createHearts() {
         );
 
 
-        setTimeout(() => {
+        setTimeout(
+            function() {
 
-            heart.remove();
+                heart.remove();
 
-        }, 1600);
+            },
+            1600
+        );
 
     }
 
 }
 
 
-/* =========================================
+/* =====================================================
    CONFETTI
-========================================= */
+===================================================== */
 
 function createConfetti() {
 
     const symbols = [
         "💙",
         "♡",
-        "✦",
         "🌷",
+        "✦",
         "🤍"
     ];
 
 
     for (
         let i = 0;
-        i < 35;
+        i < 30;
         i++
     ) {
 
@@ -491,7 +612,7 @@ function createConfetti() {
             "fixed";
 
         item.style.zIndex =
-            "999";
+            "9999";
 
         item.style.pointerEvents =
             "none";
@@ -506,25 +627,21 @@ function createConfetti() {
 
         item.style.fontSize =
             (
-                10 +
-                Math.random() * 15
+                12 +
+                Math.random() * 14
             ) +
             "px";
 
 
-        document.body.appendChild(
-            item
-        );
-
-
         const duration =
             1800 +
-            Math.random() * 1600;
+            Math.random() * 1200;
 
 
         item.animate(
 
             [
+
                 {
                     transform:
                         "translateY(0) rotate(0deg)",
@@ -534,31 +651,39 @@ function createConfetti() {
 
                 {
                     transform:
-                        `
-                        translateY(110vh)
-                        rotate(720deg)
-                        `,
+                        "translateY(110vh) rotate(720deg)",
 
                     opacity: 0
                 }
+
             ],
 
             {
+
                 duration:
                     duration,
 
                 easing:
                     "linear"
+
             }
 
         );
 
 
-        setTimeout(() => {
+        document.body.appendChild(
+            item
+        );
 
-            item.remove();
 
-        }, duration + 100);
+        setTimeout(
+            function() {
+
+                item.remove();
+
+            },
+            duration + 100
+        );
 
     }
 
