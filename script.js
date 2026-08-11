@@ -1,13 +1,23 @@
-/* ==========================================
+/* =========================================
    🌼 MOTHER'S DAY MINI GAME V3
-========================================== */
+========================================= */
 
 
-/* ==========================================
+/* =========================================
+   VARIABLES
+========================================= */
+
+const scenes =
+    document.querySelectorAll(".scene");
+
+let currentScene = 1;
+
+
+/* =========================================
    MUSIC
-========================================== */
+========================================= */
 
-const bgMusic =
+const music =
     document.getElementById("bgMusic");
 
 const musicBtn =
@@ -16,13 +26,13 @@ const musicBtn =
 let musicPlaying = false;
 
 
-function startMusic() {
+function playMusic() {
 
-    if (!bgMusic) return;
+    if (!music) return;
 
-    bgMusic.volume = 0.25;
+    music.volume = 0.22;
 
-    bgMusic.play()
+    music.play()
         .then(() => {
 
             musicPlaying = true;
@@ -40,11 +50,11 @@ function startMusic() {
 
 function toggleMusic() {
 
-    if (!bgMusic) return;
+    if (!music) return;
 
     if (musicPlaying) {
 
-        bgMusic.pause();
+        music.pause();
 
         musicPlaying = false;
 
@@ -52,79 +62,119 @@ function toggleMusic() {
 
     } else {
 
-        bgMusic.play();
+        music.play()
+            .then(() => {
 
-        musicPlaying = true;
+                musicPlaying = true;
 
-        musicBtn.textContent = "🎵";
+                musicBtn.textContent = "🎵";
+
+            });
 
     }
 }
 
 
-/* ==========================================
-   SCENE
-========================================== */
+musicBtn.addEventListener(
+    "click",
+    toggleMusic
+);
 
-let currentScene = 1;
 
+/* =========================================
+   SCENE SYSTEM
+========================================= */
 
-function goToScene(sceneNumber) {
+function goToScene(number) {
 
-    const oldScene =
+    const current =
         document.getElementById(
             `scene${currentScene}`
         );
 
-    const newScene =
+    const next =
         document.getElementById(
-            `scene${sceneNumber}`
+            `scene${number}`
         );
 
-    if (!newScene) return;
+    if (!next || current === next) {
+        return;
+    }
 
-    oldScene.classList.remove("active");
+    current.classList.remove("active");
 
     setTimeout(() => {
 
-        newScene.classList.add("active");
+        next.classList.add("active");
 
-        currentScene = sceneNumber;
+        currentScene = number;
 
-    }, 100);
+    }, 80);
 }
 
 
-/* ==========================================
-   🌼 ต้นมะลิ
-========================================== */
+/* ปุ่มไปฉากถัดไป */
+
+document
+    .querySelectorAll("[data-next]")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                playMusic();
+
+                const next =
+                    Number(
+                        button.dataset.next
+                    );
+
+                goToScene(next);
+
+            }
+        );
+
+    });
+
+
+/* =========================================
+   🌱 TREE
+========================================= */
 
 let waterCount = 0;
-
 
 const tree =
     document.getElementById("tree");
 
+const waterBtn =
+    document.getElementById("waterBtn");
+
 const waterText =
     document.getElementById("waterText");
 
-const waterBtn =
-    document.getElementById("waterBtn");
+
+waterBtn.addEventListener(
+    "click",
+    waterPlant
+);
 
 
 function waterPlant() {
 
-    startMusic();
+    playMusic();
 
-    if (waterCount >= 3) return;
+    if (waterCount >= 3) {
+        return;
+    }
 
     waterCount++;
 
     tree.className =
-        `tree tree-stage-${waterCount}`;
+        `tree stage${waterCount}`;
 
 
-    createWaterDrop();
+    createWaterDrops();
 
 
     if (waterCount === 1) {
@@ -151,101 +201,129 @@ function waterPlant() {
         waterBtn.textContent =
             "🌼 ดูมะลิของแม่";
 
-        waterBtn.onclick =
-            function () {
+        waterBtn.removeEventListener(
+            "click",
+            waterPlant
+        );
+
+        waterBtn.addEventListener(
+            "click",
+            () => {
 
                 goToScene(2);
 
-            };
-    }
-}
-
-
-/* ==========================================
-   💧 WATER EFFECT
-========================================== */
-
-function createWaterDrop() {
-
-    const drop =
-        document.createElement("div");
-
-    drop.textContent = "💧";
-
-    drop.style.position = "fixed";
-
-    drop.style.left =
-        (
-            window.innerWidth / 2
-            + Math.random() * 80
-            - 40
-        ) + "px";
-
-    drop.style.top = "35%";
-
-    drop.style.fontSize = "25px";
-
-    drop.style.zIndex = "999";
-
-    drop.style.pointerEvents = "none";
-
-    document.body.appendChild(drop);
-
-
-    drop.animate(
-
-        [
-            {
-                transform:
-                    "translateY(-20px) scale(.5)",
-
-                opacity: 0
-            },
-
-            {
-                transform:
-                    "translateY(80px) scale(1)",
-
-                opacity: 1
-            },
-
-            {
-                transform:
-                    "translateY(140px) scale(.7)",
-
-                opacity: 0
             }
-        ],
+        );
 
-        {
-            duration: 900,
+    }
 
-            easing: "ease-in"
-        }
-
-    ).onfinish = () => {
-
-        drop.remove();
-
-    };
 }
 
 
-/* ==========================================
+/* =========================================
+   💧 WATER EFFECT
+========================================= */
+
+function createWaterDrops() {
+
+    for (
+        let i = 0;
+        i < 7;
+        i++
+    ) {
+
+        const drop =
+            document.createElement("div");
+
+        drop.textContent = "💧";
+
+        drop.style.position =
+            "fixed";
+
+        drop.style.left =
+            (
+                window.innerWidth / 2
+                + Math.random() * 100
+                - 50
+            ) + "px";
+
+        drop.style.top =
+            "32%";
+
+        drop.style.fontSize =
+            "22px";
+
+        drop.style.zIndex =
+            "999";
+
+        drop.style.pointerEvents =
+            "none";
+
+
+        document.body.appendChild(
+            drop
+        );
+
+
+        const x =
+            Math.random() * 70 - 35;
+
+
+        drop.animate(
+
+            [
+                {
+                    transform:
+                        "translate(0,-20px) scale(.5)",
+
+                    opacity: 0
+                },
+
+                {
+                    transform:
+                        `translate(${x}px,70px) scale(1)`,
+
+                    opacity: 1
+                },
+
+                {
+                    transform:
+                        `translate(${x}px,130px) scale(.6)`,
+
+                    opacity: 0
+                }
+            ],
+
+            {
+                duration:
+                    700 + Math.random() * 400,
+
+                easing:
+                    "ease-in"
+            }
+
+        ).onfinish = () => {
+
+            drop.remove();
+
+        };
+
+    }
+
+}
+
+
+/* =========================================
    📸 GALLERY
-========================================== */
+========================================= */
 
 const photos = [
 
-    "photo1.jpg",
-
-    "photo2.jpg",
-
-    "photo3.jpg",
-
-    "photo4.jpg",
-
-    "photo5.jpg"
+    "./photo1.jpg",
+    "./photo2.jpg",
+    "./photo3.jpg",
+    "./photo4.jpg",
+    "./photo5.jpg"
 
 ];
 
@@ -253,81 +331,157 @@ const photos = [
 let currentPhoto = 0;
 
 
+const gallery =
+    document.querySelector(".gallery");
+
 const galleryImage =
     document.getElementById(
         "galleryImage"
     );
 
+const imageError =
+    document.getElementById(
+        "imageError"
+    );
+
+const photoNumber =
+    document.getElementById(
+        "photoNumber"
+    );
 
 const dots =
     document.querySelectorAll(".dot");
 
 
-function showPhoto(index) {
+/* โหลดรูปแรก */
+
+loadPhoto(0);
+
+
+function loadPhoto(index) {
 
     currentPhoto =
         (
             index + photos.length
-        )
-        % photos.length;
+        ) % photos.length;
 
+
+    gallery.classList.remove(
+        "show-error"
+    );
 
     galleryImage.classList.add(
-        "photo-changing"
+        "loading"
     );
 
 
-    setTimeout(() => {
+    const testImage =
+        new Image();
+
+
+    testImage.onload = () => {
 
         galleryImage.src =
             photos[currentPhoto];
 
         galleryImage.classList.remove(
-            "photo-changing"
+            "loading"
         );
 
-        updateDots();
+        gallery.classList.remove(
+            "show-error"
+        );
 
-    }, 250);
+        updateGalleryUI();
+
+    };
+
+
+    testImage.onerror = () => {
+
+        console.error(
+            "โหลดรูปไม่ได้:",
+            photos[currentPhoto]
+        );
+
+        galleryImage.classList.remove(
+            "loading"
+        );
+
+        gallery.classList.add(
+            "show-error"
+        );
+
+        updateGalleryUI();
+
+    };
+
+
+    testImage.src =
+        photos[currentPhoto];
+
 }
 
 
 function nextPhoto() {
 
-    showPhoto(
+    loadPhoto(
         currentPhoto + 1
     );
+
 }
 
 
 function previousPhoto() {
 
-    showPhoto(
+    loadPhoto(
         currentPhoto - 1
     );
+
 }
 
 
-function updateDots() {
+function updateGalleryUI() {
+
+    photoNumber.textContent =
+        `${currentPhoto + 1} / ${photos.length}`;
+
 
     dots.forEach(
         (dot, index) => {
 
             dot.classList.toggle(
-                "active-dot",
+                "active",
                 index === currentPhoto
             );
 
         }
     );
+
 }
 
 
-/* ==========================================
-   🎡 ภารกิจ 5 อย่าง
-========================================== */
+document
+    .getElementById("nextBtn")
+    .addEventListener(
+        "click",
+        nextPhoto
+    );
 
-const wheelTasks = [
+
+document
+    .getElementById("prevBtn")
+    .addEventListener(
+        "click",
+        previousPhoto
+    );
+
+
+/* =========================================
+   🎡 WHEEL TASKS
+========================================= */
+
+const tasks = [
 
     {
         icon: "🤗",
@@ -406,21 +560,19 @@ const wheelTasks = [
 ];
 
 
-/* ==========================================
+/* =========================================
    🎡 WHEEL
-========================================== */
+========================================= */
 
 const wheel =
     document.getElementById("wheel");
 
+const spinBtn =
+    document.getElementById("spinBtn");
+
 const wheelResult =
     document.getElementById(
         "wheelResult"
-    );
-
-const spinBtn =
-    document.getElementById(
-        "spinBtn"
     );
 
 
@@ -428,12 +580,26 @@ let wheelRotation = 0;
 
 let spinning = false;
 
+let selectedTask = null;
+
+
+/* =========================================
+   SPIN
+========================================= */
+
+spinBtn.addEventListener(
+    "click",
+    spinWheel
+);
+
 
 function spinWheel() {
 
-    if (spinning) return;
+    if (spinning) {
+        return;
+    }
 
-    startMusic();
+    playMusic();
 
     spinning = true;
 
@@ -446,15 +612,24 @@ function spinWheel() {
     const randomIndex =
         Math.floor(
             Math.random()
-            * wheelTasks.length
+            * tasks.length
         );
 
 
+    selectedTask =
+        randomIndex;
+
+
     const sectionAngle =
-        360 / wheelTasks.length;
+        360 / tasks.length;
 
 
-    const targetAngle =
+    /*
+       ให้ช่องที่สุ่มได้
+       หยุดบริเวณด้านบน
+    */
+
+    const target =
         360 -
         (
             randomIndex
@@ -464,8 +639,8 @@ function spinWheel() {
 
 
     wheelRotation +=
-        360 * 5
-        + targetAngle;
+        360 * 6
+        + target;
 
 
     wheel.style.transform =
@@ -475,7 +650,7 @@ function spinWheel() {
     setTimeout(() => {
 
         const task =
-            wheelTasks[randomIndex];
+            tasks[randomIndex];
 
 
         wheelResult.textContent =
@@ -488,34 +663,41 @@ function spinWheel() {
             "🎁 รับภารกิจนี้";
 
 
-        spinBtn.onclick =
-            function () {
+        spinBtn.removeEventListener(
+            "click",
+            spinWheel
+        );
 
-                openTask(randomIndex);
 
-            };
+        spinBtn.addEventListener(
+            "click",
+            openSelectedTask,
+            {
+                once: true
+            }
+        );
 
 
         spinning = false;
 
-    }, 4200);
+    }, 4300);
+
 }
 
 
-/* ==========================================
-   💕 เปิดภารกิจ
-========================================== */
+/* =========================================
+   OPEN TASK
+========================================= */
 
-let selectedTask = 0;
+function openSelectedTask() {
 
-
-function openTask(index) {
-
-    selectedTask = index;
+    if (selectedTask === null) {
+        return;
+    }
 
 
     const task =
-        wheelTasks[index];
+        tasks[selectedTask];
 
 
     document.getElementById(
@@ -536,40 +718,34 @@ function openTask(index) {
         task.description;
 
 
-    document.getElementById(
-        "taskArea"
-    ).innerHTML =
-
-        `<div class="task-progress">
-            💕 ภารกิจเล็ก ๆ จากหัวใจของลูก 💕
-        </div>`;
+    const taskBtn =
+        document.getElementById(
+            "taskBtn"
+        );
 
 
-    document.getElementById(
-        "taskBtn"
-    ).textContent =
+    taskBtn.disabled = false;
+
+    taskBtn.textContent =
         "❤️ ทำภารกิจสำเร็จ";
 
 
-    document.getElementById(
-        "taskBtn"
-    ).disabled = false;
-
-
     goToScene(6);
+
+
+    taskBtn.onclick =
+        completeTask;
+
 }
 
 
-/* ==========================================
-   ❤️ ทำภารกิจ
-========================================== */
+/* =========================================
+   ❤️ COMPLETE TASK
+========================================= */
 
 function completeTask() {
 
-    startMusic();
-
-    createHeartExplosion();
-
+    playMusic();
 
     const taskBtn =
         document.getElementById(
@@ -577,86 +753,82 @@ function completeTask() {
         );
 
 
+    taskBtn.disabled = true;
+
     taskBtn.textContent =
         "✨ สำเร็จแล้ว!";
 
 
-    taskBtn.disabled = true;
+    createHeartExplosion();
 
 
     setTimeout(() => {
 
         goToScene(7);
 
-    }, 1500);
+    }, 1600);
+
 }
 
 
-/* ==========================================
-   💕 HEART EFFECT
-========================================== */
+/* =========================================
+   💕 HEART EXPLOSION
+========================================= */
 
 function createHeartExplosion() {
 
-    const hearts = [
-
+    const items = [
         "❤️",
-
         "💕",
-
         "💗",
-
         "💖",
-
         "🌼"
-
     ];
 
 
     for (
         let i = 0;
-        i < 20;
+        i < 25;
         i++
     ) {
 
-        const heart =
+        const item =
             document.createElement("div");
 
 
-        heart.textContent =
-            hearts[
+        item.textContent =
+            items[
                 Math.floor(
                     Math.random()
-                    * hearts.length
+                    * items.length
                 )
             ];
 
 
-        heart.style.position =
+        item.style.position =
             "fixed";
 
-        heart.style.left =
+        item.style.left =
             "50%";
 
-        heart.style.top =
+        item.style.top =
             "50%";
 
-        heart.style.fontSize =
+        item.style.fontSize =
             (
                 18
-                + Math.random() * 20
-            )
-            + "px";
+                + Math.random() * 22
+            ) + "px";
 
-        heart.style.zIndex =
+        item.style.zIndex =
             "999";
 
-        heart.style.pointerEvents =
+        item.style.pointerEvents =
             "none";
 
 
         document.body.appendChild(
-            heart
+            item
         );
 
 
@@ -668,13 +840,12 @@ function createHeartExplosion() {
 
         const distance =
             100
-            + Math.random() * 250;
+            + Math.random() * 280;
 
 
-        heart.animate(
+        item.animate(
 
             [
-
                 {
                     transform:
                         "translate(-50%,-50%) scale(0)",
@@ -703,10 +874,9 @@ function createHeartExplosion() {
             ],
 
             {
-
                 duration:
                     1200
-                    + Math.random() * 500,
+                    + Math.random() * 700,
 
                 easing:
                     "ease-out"
@@ -714,36 +884,41 @@ function createHeartExplosion() {
 
         ).onfinish = () => {
 
-            heart.remove();
+            item.remove();
 
         };
+
     }
-}
-
-
-/* ==========================================
-   🔄 เล่นใหม่
-========================================== */
-
-function restartGame() {
-
-    location.reload();
 
 }
 
 
-/* ==========================================
-   🎵 เริ่มเพลงเมื่อกดครั้งแรก
-========================================== */
+/* =========================================
+   🔄 RESTART
+========================================= */
+
+document
+    .getElementById("restartBtn")
+    .addEventListener(
+        "click",
+        () => {
+
+            location.reload();
+
+        }
+    );
+
+
+/* =========================================
+   🎵 FIRST USER INTERACTION
+========================================= */
 
 document.addEventListener(
     "click",
     () => {
 
         if (!musicPlaying) {
-
-            startMusic();
-
+            playMusic();
         }
 
     },
