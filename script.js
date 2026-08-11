@@ -1,499 +1,152 @@
-/* =====================================================
+/* ==========================================
    MOTHER'S DAY MINI GAME V3
-===================================================== */
+========================================== */
 
 
-/* =====================================================
-   SCREENS
-===================================================== */
+/* ==========================================
+   MUSIC
+========================================== */
 
-const screens = {
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
 
-    start:
-        document.getElementById(
-            "scene-start"
-        ),
+let musicPlaying = false;
 
-    tree:
-        document.getElementById(
-            "scene-tree"
-        ),
+function startMusic() {
 
-    wheel:
-        document.getElementById(
-            "scene-wheel"
-        ),
+    if (!bgMusic) return;
 
-    hug:
-        document.getElementById(
-            "scene-hug"
-        ),
+    bgMusic.volume = 0.25;
 
-    kiss:
-        document.getElementById(
-            "scene-kiss"
-        ),
+    bgMusic.play()
+        .then(() => {
 
-    love:
-        document.getElementById(
-            "scene-love"
-        ),
+            musicPlaying = true;
 
-    food:
-        document.getElementById(
-            "scene-food"
-        ),
+            musicBtn.textContent = "🎵";
 
-    travel:
-        document.getElementById(
-            "scene-travel"
-        ),
+        })
+        .catch(() => {
 
-    gallery:
-        document.getElementById(
-            "scene-gallery"
-        ),
+            musicPlaying = false;
 
-    gift:
-        document.getElementById(
-            "scene-gift"
-        ),
+        });
 
-    final:
-        document.getElementById(
-            "scene-final"
-        )
+}
 
-};
+function toggleMusic() {
 
+    if (!bgMusic) return;
 
-let currentScene =
-    "start";
+    if (musicPlaying) {
 
+        bgMusic.pause();
 
-/* =====================================================
-   SCENE CHANGE
-===================================================== */
+        musicPlaying = false;
 
-function showScene(name) {
+        musicBtn.textContent = "🔇";
 
-    Object.values(
-        screens
-    ).forEach(
-        screen => {
+    } else {
 
-            screen.classList.remove(
-                "active"
-            );
+        bgMusic.play();
 
-            screen.classList.remove(
-                "enter"
-            );
+        musicPlaying = true;
 
-        }
-    );
+        musicBtn.textContent = "🎵";
 
-
-    const flash =
-        document.getElementById(
-            "sceneFlash"
-        );
-
-
-    flash.classList.remove(
-        "play"
-    );
-
-
-    void flash.offsetWidth;
-
-
-    flash.classList.add(
-        "play"
-    );
-
-
-    setTimeout(
-        () => {
-
-            screens[name]
-                .classList.add(
-                    "active"
-                );
-
-
-            void screens[name]
-                .offsetWidth;
-
-
-            screens[name]
-                .classList.add(
-                    "enter"
-                );
-
-
-            currentScene =
-                name;
-
-        },
-        220
-    );
+    }
 
 }
 
 
-/* =====================================================
-   MUSIC
-===================================================== */
+/* ==========================================
+   SCENE SYSTEM
+========================================== */
 
-const music =
-    document.getElementById(
-        "bgMusic"
-    );
+let currentScene = 1;
 
+function goToScene(sceneNumber) {
 
-const musicBtn =
-    document.getElementById(
-        "musicBtn"
-    );
+    const oldScene =
+        document.getElementById(
+            `scene${currentScene}`
+        );
 
+    const newScene =
+        document.getElementById(
+            `scene${sceneNumber}`
+        );
 
-let musicPlaying =
-    false;
+    if (!newScene) return;
 
+    oldScene.classList.remove("active");
 
-musicBtn.addEventListener(
-    "click",
-    () => {
+    setTimeout(() => {
 
-        if (
-            musicPlaying
-        ) {
+        newScene.classList.add("active");
 
-            music.pause();
+        currentScene = sceneNumber;
 
-            musicBtn.textContent =
-                "🔇";
+    }, 100);
 
-            musicPlaying =
-                false;
-
-        } else {
-
-            music.play()
-                .then(
-                    () => {
-
-                        musicBtn.textContent =
-                            "🎵";
-
-                        musicPlaying =
-                            true;
-
-                    }
-                )
-                .catch(
-                    () => {
-
-                        alert(
-                            "แตะหน้าจอก่อนเพื่อเปิดเพลงนะ 💙"
-                        );
-
-                    }
-                );
-
-        }
-
-    }
-);
+}
 
 
-/* =====================================================
-   START
-===================================================== */
+/* ==========================================
+   JASMINE TREE
+========================================== */
 
-document
-    .getElementById(
-        "startBtn"
-    )
-    .addEventListener(
-        "click",
-        () => {
+let waterCount = 0;
 
-            music.play()
-                .then(
-                    () => {
+const waterText =
+    document.getElementById("waterText");
 
-                        musicPlaying =
-                            true;
-
-                        musicBtn.textContent =
-                            "🎵";
-
-                    }
-                )
-                .catch(
-                    () => {}
-                );
-
-
-            showScene(
-                "tree"
-            );
-
-        }
-    );
-
-
-/* =====================================================
-   TREE
-===================================================== */
-
-let waterCount =
-    0;
-
-
-const jasmine =
-    document.getElementById(
-        "jasmine"
-    );
-
+const tree =
+    document.getElementById("tree");
 
 const waterBtn =
-    document.getElementById(
-        "waterBtn"
-    );
+    document.getElementById("waterBtn");
 
 
-const treeNextBtn =
-    document.getElementById(
-        "treeNextBtn"
-    );
+function waterPlant() {
 
+    startMusic();
 
-const waterCountText =
-    document.getElementById(
-        "waterCount"
-    );
-
-
-const treeMessage =
-    document.getElementById(
-        "treeMessage"
-    );
-
-
-const treeMessages = [
-
-    "เมล็ดเล็ก ๆ กำลังรอความรักจากแม่ 🤍",
-
-    "ได้รับน้ำแล้ว 💧 ต้นมะลิเริ่มเติบโต",
-
-    "ดูสิ...ใบใหม่กำลังโต 🌿",
-
-    "ต้นมะลิโตขึ้นแล้ว 🌿",
-
-    "ใกล้จะออกดอกแล้วนะ 🌼",
-
-    "🌼 มะลิบานแล้ว เพราะได้รับความรักจากแม่ 🤍"
-
-];
-
-
-waterBtn.addEventListener(
-    "click",
-    waterTree
-);
-
-
-function waterTree() {
-
-    if (
-        waterCount >= 5
-    ) {
-
-        return;
-
-    }
-
+    if (waterCount >= 3) return;
 
     waterCount++;
 
+    tree.className =
+        `tree tree-stage-${waterCount}`;
 
-    jasmine.className =
-        `jasmine stage${waterCount}`;
+    createWaterDrop();
 
+    if (waterCount === 1) {
 
-    jasmine.classList.add(
-        "watered"
-    );
-
-
-    setTimeout(
-        () => {
-
-            jasmine.classList.remove(
-                "watered"
-            );
-
-        },
-        700
-    );
-
-
-    waterCountText.textContent =
-        `รดน้ำ ${waterCount} / 5 ครั้ง`;
-
-
-    treeMessage.innerHTML =
-        treeMessages[
-            waterCount
-        ];
-
-
-    createWaterSplash();
-
-
-    if (
-        waterCount >= 4
-    ) {
-
-        const flowers =
-            document.querySelectorAll(
-                ".jasmine-flower"
-            );
-
-
-        flowers.forEach(
-            (
-                flower,
-                index
-            ) => {
-
-                setTimeout(
-                    () => {
-
-                        flower.classList.add(
-                            "bloom"
-                        );
-
-                    },
-                    index * 180
-                );
-
-            }
-        );
+        waterText.textContent =
+            "ต้นมะลิเริ่มโตแล้ว 🌱 อีก 2 ครั้งนะ";
 
     }
 
+    if (waterCount === 2) {
 
-    if (
-        waterCount === 5
-    ) {
-
-        waterBtn.classList.add(
-            "hidden"
-        );
-
-
-        treeNextBtn.classList.remove(
-            "hidden"
-        );
-
-
-        createHearts(
-            20
-        );
+        waterText.textContent =
+            "กำลังมีใบแล้ว 🌿 อีก 1 ครั้งสุดท้าย";
 
     }
 
-}
+    if (waterCount === 3) {
 
+        waterText.textContent =
+            "มะลิพร้อมออกดอกแล้ว! 🌼";
 
-function createWaterSplash() {
+        waterBtn.textContent =
+            "🌼 ดูมะลิของแม่";
 
-    for (
-        let i = 0;
-        i < 10;
-        i++
-    ) {
+        waterBtn.onclick =
+            function () {
 
-        const drop =
-            document.createElement(
-                "div"
-            );
-
-
-        drop.textContent =
-            "💧";
-
-
-        drop.style.position =
-            "fixed";
-
-
-        drop.style.zIndex =
-            "9999";
-
-
-        drop.style.pointerEvents =
-            "none";
-
-
-        drop.style.fontSize =
-            "24px";
-
-
-        drop.style.left =
-            (
-                window.innerWidth / 2
-                +
-                Math.random() * 180
-                -
-                90
-            )
-            + "px";
-
-
-        drop.style.top =
-            "40%";
-
-
-        document.body.appendChild(
-            drop
-        );
-
-
-        const animation =
-            drop.animate(
-                [
-                    {
-                        transform:
-                            "translateY(0) scale(.5)",
-                        opacity: 1
-                    },
-                    {
-                        transform:
-                            `translate(
-                                ${Math.random() * 100 - 50}px,
-                                100px
-                            ) scale(1)`,
-                        opacity: 0
-                    }
-                ],
-                {
-                    duration:
-                        900,
-                    easing:
-                        "ease-out"
-                }
-            );
-
-
-        animation.onfinish =
-            () => {
-
-                drop.remove();
+                goToScene(2);
 
             };
 
@@ -502,1330 +155,554 @@ function createWaterSplash() {
 }
 
 
-treeNextBtn.addEventListener(
-    "click",
-    () => {
+/* ==========================================
+   WATER ANIMATION
+========================================== */
 
-        showScene(
-            "wheel"
-        );
+function createWaterDrop() {
 
-        drawWheel();
+    const drop =
+        document.createElement("div");
 
-    }
-);
+    drop.textContent = "💧";
 
+    drop.style.position = "fixed";
 
-/* =====================================================
-   WHEEL
-===================================================== */
+    drop.style.left =
+        (window.innerWidth / 2 + Math.random() * 80 - 40)
+        + "px";
 
-const canvas =
-    document.getElementById(
-        "wheel"
-    );
+    drop.style.top = "35%";
 
+    drop.style.fontSize = "25px";
 
-const ctx =
-    canvas.getContext(
-        "2d"
-    );
+    drop.style.zIndex = "50";
 
+    drop.style.pointerEvents = "none";
 
-const wheelOptions = [
+    document.body.appendChild(drop);
 
-    "กอดแม่ 🤗",
+    drop.animate(
 
-    "จุ๊บแม่ 😘",
+        [
+            {
+                transform:
+                    "translateY(-20px) scale(0.5)",
+                opacity: 0
+            },
+            {
+                transform:
+                    "translateY(80px) scale(1)",
+                opacity: 1
+            },
+            {
+                transform:
+                    "translateY(140px) scale(0.7)",
+                opacity: 0
+            }
+        ],
 
-    "บอกรักแม่ ❤️",
-
-    "พาแม่กินข้าว 🍚",
-
-    "พาแม่เที่ยว 🚗",
-
-    "แม่เลือกเอง 🌼"
-
-];
-
-
-let wheelRotation =
-    0;
-
-
-let spinning =
-    false;
-
-
-function drawWheel() {
-
-    const center =
-        canvas.width / 2;
-
-
-    const radius =
-        center - 8;
-
-
-    const slice =
-        (
-            Math.PI * 2
-        )
-        /
-        wheelOptions.length;
-
-
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-
-    wheelOptions.forEach(
-        (
-            option,
-            index
-        ) => {
-
-            const start =
-                index * slice;
-
-
-            const end =
-                start + slice;
-
-
-            ctx.beginPath();
-
-
-            ctx.moveTo(
-                center,
-                center
-            );
-
-
-            ctx.arc(
-                center,
-                center,
-                radius,
-                start,
-                end
-            );
-
-
-            ctx.closePath();
-
-
-            ctx.fillStyle =
-                [
-                    "#FFE5EC",
-                    "#FFF1C7",
-                    "#DDF5E8",
-                    "#DDF2FF",
-                    "#EDE4FF",
-                    "#FFE9D5"
-                ][index];
-
-
-            ctx.fill();
-
-
-            ctx.strokeStyle =
-                "#FFFFFF";
-
-
-            ctx.lineWidth =
-                3;
-
-
-            ctx.stroke();
-
-
-            ctx.save();
-
-
-            ctx.translate(
-                center,
-                center
-            );
-
-
-            ctx.rotate(
-                start
-                +
-                slice / 2
-            );
-
-
-            ctx.textAlign =
-                "right";
-
-
-            ctx.textBaseline =
-                "middle";
-
-
-            ctx.fillStyle =
-                "#527083";
-
-
-            ctx.font =
-                "bold 13px sans-serif";
-
-
-            ctx.fillText(
-                option,
-                radius - 15,
-                0
-            );
-
-
-            ctx.restore();
-
+        {
+            duration: 900,
+            easing: "ease-in"
         }
-    );
 
+    ).onfinish = () => {
 
-    ctx.beginPath();
+        drop.remove();
 
-
-    ctx.arc(
-        center,
-        center,
-        25,
-        0,
-        Math.PI * 2
-    );
-
-
-    ctx.fillStyle =
-        "#FFFFFF";
-
-
-    ctx.fill();
-
-
-    ctx.strokeStyle =
-        "#D6EAF3";
-
-
-    ctx.stroke();
+    };
 
 }
 
 
-drawWheel();
+/* ==========================================
+   GALLERY
+========================================== */
+
+const photos = [
+
+    "photo1.jpg",
+    "photo2.jpg",
+    "photo3.jpg",
+    "photo4.jpg",
+    "photo5.jpg"
+
+];
+
+let currentPhoto = 0;
+
+const galleryImage =
+    document.getElementById("galleryImage");
+
+const dots =
+    document.querySelectorAll(".dot");
 
 
-document
-    .getElementById(
-        "spinBtn"
-    )
-    .addEventListener(
-        "click",
-        spinWheel
+function showPhoto(index) {
+
+    if (!galleryImage) return;
+
+    currentPhoto =
+        (index + photos.length)
+        % photos.length;
+
+    galleryImage.classList.add(
+        "photo-changing"
     );
+
+    setTimeout(() => {
+
+        galleryImage.src =
+            photos[currentPhoto];
+
+        galleryImage.onload = () => {
+
+            galleryImage.classList.remove(
+                "photo-changing"
+            );
+
+        };
+
+        updateDots();
+
+    }, 250);
+
+}
+
+
+function nextPhoto() {
+
+    showPhoto(currentPhoto + 1);
+
+}
+
+
+function previousPhoto() {
+
+    showPhoto(currentPhoto - 1);
+
+}
+
+
+function updateDots() {
+
+    dots.forEach(
+        (dot, index) => {
+
+            dot.classList.toggle(
+                "active-dot",
+                index === currentPhoto
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   AUTO GALLERY
+========================================== */
+
+let galleryTimer;
+
+function startGalleryAutoPlay() {
+
+    clearInterval(galleryTimer);
+
+    galleryTimer =
+        setInterval(() => {
+
+            if (currentScene === 4) {
+
+                nextPhoto();
+
+            }
+
+        }, 4500);
+
+}
+
+startGalleryAutoPlay();
+
+
+/* ==========================================
+   WHEEL
+========================================== */
+
+const wheel =
+    document.getElementById("wheel");
+
+const wheelResult =
+    document.getElementById("wheelResult");
+
+const spinBtn =
+    document.getElementById("spinBtn");
+
+
+let wheelRotation = 0;
+
+let spinning = false;
+
+
+/*
+
+6 ช่อง
+
+0 = กอด
+1 = จุ๊บ
+2 = บอกรัก
+3 = กินข้าว
+4 = เที่ยว
+5 = เซอร์ไพรส์
+
+*/
+
+const wheelTasks = [
+
+    {
+        icon: "🤗",
+        title: "กอดแม่ 1 ที",
+        description:
+            "กอดแม่แน่น ๆ 1 ครั้ง แล้วบอกแม่ว่า หนูรักแม่นะ ❤️"
+    },
+
+    {
+        icon: "😘",
+        title: "จุ๊บแก้มแม่ 2 ข้าง",
+        description:
+            "จุ๊บแก้มซ้าย 1 ที และแก้มขวาอีก 1 ที 💕"
+    },
+
+    {
+        icon: "❤️",
+        title: "บอกรักแม่",
+        description:
+            "พูดออกมาดัง ๆ เลยว่า \"หนูรักแม่นะ\" 💗"
+    },
+
+    {
+        icon: "🍚",
+        title: "พาแม่กินข้าว",
+        description:
+            "วันนี้แม่อยากกินอะไร หนูตามใจแม่เลย 🍜"
+    },
+
+    {
+        icon: "🚗",
+        title: "พาแม่เที่ยว 1 ที่",
+        description:
+            "เลือกสถานที่ที่แม่อยากไป แล้วพาแม่ไปเที่ยวกัน 🌳"
+    },
+
+    {
+        icon: "💐",
+        title: "เซอร์ไพรส์แม่",
+        description:
+            "มอบดอกมะลิให้แม่ พร้อมกอดหนึ่งที 🌼"
+    }
+
+];
 
 
 function spinWheel() {
 
-    if (
-        spinning
-    ) {
+    if (spinning) return;
 
-        return;
+    startMusic();
 
-    }
+    spinning = true;
 
+    spinBtn.disabled = true;
 
-    spinning =
-        true;
+    spinBtn.textContent =
+        "🎡 กำลังหมุน...";
 
-
-    const wheelArea =
-        document.querySelector(
-            ".wheel-area"
-        );
-
-
-    wheelArea.classList.add(
-        "spinning"
-    );
-
-
-    const extra =
-        5 +
+    const randomIndex =
         Math.floor(
-            Math.random() * 4
+            Math.random()
+            * wheelTasks.length
         );
 
+    const sectionAngle = 360 / 6;
 
-    const randomAngle =
-        Math.random()
-        * 360;
+    const targetAngle =
+        360 -
+        (
+            randomIndex * sectionAngle
+            + sectionAngle / 2
+        );
 
+    wheelRotation +=
+        360 * 5
+        + targetAngle;
 
-    const finalRotation =
-        wheelRotation
-        +
-        extra * 360
-        +
-        randomAngle;
+    wheel.style.transform =
+        `rotate(${wheelRotation}deg)`;
 
+    setTimeout(() => {
 
-    wheelRotation =
-        finalRotation;
+        const task =
+            wheelTasks[randomIndex];
 
+        wheelResult.textContent =
+            `${task.icon} ${task.title}`;
 
-    canvas.style.transition =
-        "transform 4s cubic-bezier(.12,.8,.15,1)";
+        spinBtn.disabled = false;
 
+        spinBtn.textContent =
+            "🎁 รับภารกิจนี้";
 
-    canvas.style.transform =
-        `rotate(${finalRotation}deg)`;
+        spinBtn.onclick =
+            function () {
 
+                openTask(randomIndex);
 
-    setTimeout(
-        () => {
+            };
 
-            spinning =
-                false;
+        spinning = false;
 
-
-            wheelArea.classList.remove(
-                "spinning"
-            );
-
-
-            const normalized =
-                (
-                    finalRotation % 360
-                    + 360
-                )
-                % 360;
-
-
-            const index =
-                Math.floor(
-                    (
-                        360
-                        -
-                        normalized
-                        +
-                        30
-                    )
-                    % 360
-                    /
-                    (
-                        360 /
-                        wheelOptions.length
-                    )
-                );
-
-
-            const result =
-                wheelOptions[
-                    index
-                ];
-
-
-            const resultBox =
-                document.getElementById(
-                    "wheelResult"
-                );
-
-
-            resultBox.classList.remove(
-                "hidden"
-            );
-
-
-            resultBox.innerHTML = `
-                🎉 <strong>ภารกิจที่ได้คือ</strong><br><br>
-                <span style="font-size:22px">
-                    ${result}
-                </span>
-                <br><br>
-                <button
-                    class="main-btn"
-                    onclick="nextFromWheel()"
-                >
-                    💙 ทำภารกิจ
-                </button>
-            `;
-
-
-            createConfetti();
-
-        },
-        4200
-    );
+    }, 4200);
 
 }
 
 
-function nextFromWheel() {
+/* ==========================================
+   TASK
+========================================== */
 
-    showScene(
-        "hug"
-    );
+let selectedTask = 0;
+
+let completedTasks = 0;
+
+function openTask(index) {
+
+    selectedTask = index;
+
+    const task =
+        wheelTasks[index];
+
+    document.getElementById(
+        "taskIcon"
+    ).textContent =
+        task.icon;
+
+    document.getElementById(
+        "taskTitle"
+    ).textContent =
+        task.title;
+
+    document.getElementById(
+        "taskDescription"
+    ).textContent =
+        task.description;
+
+    document.getElementById(
+        "taskBtn"
+    ).textContent =
+        "❤️ ทำภารกิจสำเร็จ";
+
+    document.getElementById(
+        "taskArea"
+    ).innerHTML =
+        `<div class="task-progress">
+            ภารกิจแห่งความรัก 💕
+        </div>`;
+
+    goToScene(6);
 
 }
 
 
-/* =====================================================
-   HUG
-===================================================== */
+/* ==========================================
+   COMPLETE TASK
+========================================== */
 
-document
-    .getElementById(
-        "hugBtn"
-    )
-    .addEventListener(
-        "click",
-        () => {
+function completeTask() {
 
-            createHearts(
-                25
-            );
+    startMusic();
 
+    createHeartExplosion();
 
-            document
-                .getElementById(
-                    "hugHeart"
-                )
-                .textContent =
-                "💖";
+    completedTasks++;
 
-
-            setTimeout(
-                () => {
-
-                    showScene(
-                        "kiss"
-                    );
-
-                },
-                1500
-            );
-
-        }
-    );
-
-
-/* =====================================================
-   KISS
-===================================================== */
-
-let kissCount =
-    0;
-
-
-document
-    .getElementById(
-        "kissBtn"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            kissCount++;
-
-
-            if (
-                kissCount === 1
-            ) {
-
-                document
-                    .getElementById(
-                        "kissLeft"
-                    )
-                    .classList.add(
-                        "show"
-                    );
-
-            }
-
-
-            if (
-                kissCount === 2
-            ) {
-
-                document
-                    .getElementById(
-                        "kissRight"
-                    )
-                    .classList.add(
-                        "show"
-                    );
-
-
-                document
-                    .getElementById(
-                        "kissText"
-                    )
-                    .innerHTML =
-                    "😘 จุ๊บครบ 2 แก้มแล้ว!";
-
-
-                createHearts(
-                    15
-                );
-
-
-                setTimeout(
-                    () => {
-
-                        showScene(
-                            "love"
-                        );
-
-                        startTyping();
-
-                    },
-                    1400
-                );
-
-            }
-
-        }
-    );
-
-
-/* =====================================================
-   LOVE
-===================================================== */
-
-const loveText =
-    "แม่คือคนสำคัญที่สุดคนหนึ่งในชีวิตลูก... ขอบคุณที่อยู่ข้างลูกเสมอ ไม่ว่าจะวันไหน ลูกก็รักแม่นะ ❤️";
-
-
-let typingStarted =
-    false;
-
-
-function startTyping() {
-
-    if (
-        typingStarted
-    ) {
-
-        return;
-
-    }
-
-
-    typingStarted =
-        true;
-
-
-    const target =
+    const taskBtn =
         document.getElementById(
-            "loveTyping"
+            "taskBtn"
         );
 
+    taskBtn.textContent =
+        "✨ สำเร็จแล้ว!";
 
-    let index =
-        0;
+    taskBtn.disabled = true;
 
+    setTimeout(() => {
 
-    function type() {
+        goToScene(7);
 
-        if (
-            index <
-            loveText.length
-        ) {
-
-            target.textContent +=
-                loveText[index];
-
-
-            index++;
-
-
-            setTimeout(
-                type,
-                55
-            );
-
-        }
-
-    }
-
-
-    type();
+    }, 1500);
 
 }
 
 
-document
-    .getElementById(
-        "loveBtn"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            createHearts(
-                30
-            );
-
-
-            setTimeout(
-                () => {
-
-                    showScene(
-                        "food"
-                    );
-
-                },
-                800
-            );
-
-        }
-    );
-
-
-/* =====================================================
-   FOOD
-===================================================== */
-
-const foodItems =
-    document.querySelectorAll(
-        ".food-item"
-    );
-
-
-const foodResult =
-    document.getElementById(
-        "foodResult"
-    );
-
-
-foodItems.forEach(
-    item => {
-
-        item.addEventListener(
-            "click",
-            () => {
-
-                const food =
-                    item.querySelector(
-                        "span"
-                    ).textContent;
-
-
-                foodResult.innerHTML =
-                    `
-                    🍚 วันนี้แม่เลือก
-                    <strong>${food}</strong>
-                    ❤️
-                    `;
-
-
-                createConfetti();
-
-
-                setTimeout(
-                    () => {
-
-                        showScene(
-                            "travel"
-                        );
-
-                    },
-                    1800
-                );
-
-            }
-        );
-
-    }
-);
-
-
-/* =====================================================
-   TRAVEL
-===================================================== */
-
-document
-    .getElementById(
-        "travelBtn"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            const card =
-                document.getElementById(
-                    "travelCard"
-                );
-
-
-            card.classList.add(
-                "travel"
-            );
-
-
-            createHearts(
-                20
-            );
-
-
-            setTimeout(
-                () => {
-
-                    showScene(
-                        "gallery"
-                    );
-
-                },
-                1600
-            );
-
-        }
-    );
-
-
-/* =====================================================
-   GALLERY
-===================================================== */
-
-const galleryImages =
-    document.querySelectorAll(
-        ".gallery-img"
-    );
-
-
-const captions = [
-
-    "รูปแรกของเรา 🤍",
-
-    "ความทรงจำดี ๆ ของแม่กับลูก 🌼",
-
-    "มีแม่อยู่ด้วยก็มีความสุขเสมอ 💙",
-
-    "ขอบคุณสำหรับทุกช่วงเวลา ❤️",
-
-    "รักแม่ในทุก ๆ วันนะ 🌼"
-
-];
-
-
-let galleryIndex =
-    0;
-
-
-document
-    .getElementById(
-        "galleryNext"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            galleryImages[
-                galleryIndex
-            ].classList.remove(
-                "active"
-            );
-
-
-            galleryIndex =
-                (
-                    galleryIndex + 1
-                )
-                %
-                galleryImages.length;
-
-
-            galleryImages[
-                galleryIndex
-            ].classList.add(
-                "active"
-            );
-
-
-            document
-                .getElementById(
-                    "galleryCaption"
-                )
-                .textContent =
-                captions[
-                    galleryIndex
-                ];
-
-
-            document
-                .getElementById(
-                    "galleryCounter"
-                )
-                .textContent =
-                `${galleryIndex + 1} / ${galleryImages.length}`;
-
-
-            if (
-                galleryIndex ===
-                galleryImages.length - 1
-            ) {
-
-                document
-                    .getElementById(
-                        "galleryNext"
-                    )
-                    .textContent =
-                    "🎁 ไปดูของขวัญ";
-
-            }
-
-
-            if (
-                galleryIndex ===
-                0
-            ) {
-
-                document
-                    .getElementById(
-                        "galleryNext"
-                    )
-                    .textContent =
-                    "📸 รูปต่อไป";
-
-            }
-
-        }
-    );
-
-
-/* Double click / last photo */
-
-document
-    .getElementById(
-        "galleryNext"
-    )
-    .addEventListener(
-        "dblclick",
-        () => {
-
-            showScene(
-                "gift"
-            );
-
-        }
-    );
-
-
-/*
-   ให้ปุ่มรูปสุดท้ายไปของขวัญ
-*/
-
-const originalGalleryButton =
-    document.getElementById(
-        "galleryNext"
-    );
-
-
-originalGalleryButton.addEventListener(
-    "click",
-    () => {
-
-        if (
-            galleryIndex ===
-            galleryImages.length - 1
-        ) {
-
-            setTimeout(
-                () => {
-
-                    showScene(
-                        "gift"
-                    );
-
-                },
-                300
-            );
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   GIFT HOLD
-===================================================== */
-
-const giftBox =
-    document.getElementById(
-        "giftBox"
-    );
-
-
-const holdText =
-    document.getElementById(
-        "holdText"
-    );
-
-
-const progressBar =
-    document.getElementById(
-        "giftProgressBar"
-    );
-
-
-let holdTimer;
-
-let holdStart;
-
-let holding =
-    false;
-
-
-function startHolding(
-    event
-) {
-
-    event.preventDefault();
-
-
-    if (
-        holding
-    ) {
-
-        return;
-
-    }
-
-
-    holding =
-        true;
-
-
-    holdStart =
-        Date.now();
-
-
-    giftBox.classList.add(
-        "holding"
-    );
-
-
-    holdText.textContent =
-        "💗 กำลังเปิดของขวัญ...";
-
-
-    progressBar.style.width =
-        "0%";
-
-
-    holdTimer =
-        setInterval(
-            updateGiftProgress,
-            50
-        );
-
-}
-
-
-function updateGiftProgress() {
-
-    const elapsed =
-        Date.now()
-        -
-        holdStart;
-
-
-    const percent =
-        Math.min(
-            (
-                elapsed /
-                3000
-            )
-            * 100,
-            100
-        );
-
-
-    progressBar.style.width =
-        percent + "%";
-
-
-    if (
-        percent >= 100
-    ) {
-
-        clearInterval(
-            holdTimer
-        );
-
-
-        openGift();
-
-    }
-
-}
-
-
-function cancelHolding() {
-
-    if (
-        !holding
-    ) {
-
-        return;
-
-    }
-
-
-    clearInterval(
-        holdTimer
-    );
-
-
-    holding =
-        false;
-
-
-    giftBox.classList.remove(
-        "holding"
-    );
-
-
-    progressBar.style.width =
-        "0%";
-
-
-    holdText.textContent =
-        "💗 กดค้างที่กล่อง 3 วินาที";
-
-}
-
-
-giftBox.addEventListener(
-    "mousedown",
-    startHolding
-);
-
-
-giftBox.addEventListener(
-    "mouseup",
-    cancelHolding
-);
-
-
-giftBox.addEventListener(
-    "mouseleave",
-    cancelHolding
-);
-
-
-giftBox.addEventListener(
-    "touchstart",
-    startHolding,
-    {
-        passive: false
-    }
-);
-
-
-giftBox.addEventListener(
-    "touchend",
-    cancelHolding
-);
-
-
-function openGift() {
-
-    if (
-        !holding
-    ) {
-
-        return;
-
-    }
-
-
-    holding =
-        false;
-
-
-    clearInterval(
-        holdTimer
-    );
-
-
-    giftBox.classList.remove(
-        "holding"
-    );
-
-
-    giftBox.classList.add(
-        "open"
-    );
-
-
-    progressBar.style.width =
-        "100%";
-
-
-    holdText.textContent =
-        "🎉 เปิดแล้ว!";
-
-
-    createHearts(
-        60
-    );
-
-
-    createConfetti();
-
-
-    setTimeout(
-        () => {
-
-            showScene(
-                "final"
-            );
-
-        },
-        1800
-    );
-
-}
-
-
-/* =====================================================
+/* ==========================================
    HEART EFFECT
-===================================================== */
+========================================== */
 
-function createHearts(
-    amount = 20
-) {
+function createHeartExplosion() {
 
     const hearts = [
         "❤️",
+        "💕",
         "💗",
         "💖",
-        "🤍",
         "🌼"
     ];
 
-
-    for (
-        let i = 0;
-        i < amount;
-        i++
-    ) {
+    for (let i = 0; i < 18; i++) {
 
         const heart =
-            document.createElement(
-                "div"
-            );
-
+            document.createElement("div");
 
         heart.textContent =
             hearts[
                 Math.floor(
                     Math.random()
-                    *
-                    hearts.length
+                    * hearts.length
                 )
             ];
-
 
         heart.style.position =
             "fixed";
 
-
         heart.style.left =
-            Math.random()
-            * 100
-            + "vw";
-
+            "50%";
 
         heart.style.top =
-            "100vh";
-
+            "50%";
 
         heart.style.fontSize =
-            (
-                18
-                +
-                Math.random() * 25
-            )
+            (18 + Math.random() * 20)
             + "px";
 
-
         heart.style.zIndex =
-            "9999";
-
+            "999";
 
         heart.style.pointerEvents =
             "none";
-
 
         document.body.appendChild(
             heart
         );
 
-
-        const animation =
-            heart.animate(
-                [
-                    {
-                        transform:
-                            "translateY(0) scale(.5)",
-                        opacity: 0
-                    },
-
-                    {
-                        opacity: 1
-                    },
-
-                    {
-                        transform:
-                            `translateY(-${window.innerHeight + 150}px)
-                             rotate(${Math.random() * 360}deg)
-                             scale(1.2)`,
-                        opacity: 0
-                    }
-                ],
-                {
-                    duration:
-                        2500
-                        +
-                        Math.random() * 1800,
-
-                    easing:
-                        "ease-out"
-                }
-            );
-
-
-        animation.onfinish =
-            () => {
-
-                heart.remove();
-
-            };
-
-    }
-
-}
-
-
-/* =====================================================
-   CONFETTI
-===================================================== */
-
-function createConfetti(
-    amount = 35
-) {
-
-    const emojis = [
-        "✨",
-        "🌼",
-        "💖",
-        "🎉",
-        "🤍"
-    ];
-
-
-    for (
-        let i = 0;
-        i < amount;
-        i++
-    ) {
-
-        const item =
-            document.createElement(
-                "div"
-            );
-
-
-        item.textContent =
-            emojis[
-                Math.floor(
-                    Math.random()
-                    *
-                    emojis.length
-                )
-            ];
-
-
-        item.style.position =
-            "fixed";
-
-
-        item.style.left =
+        const angle =
             Math.random()
-            * 100
-            + "vw";
+            * Math.PI
+            * 2;
 
+        const distance =
+            100
+            + Math.random() * 250;
 
-        item.style.top =
-            "-30px";
+        heart.animate(
 
-
-        item.style.fontSize =
-            (
-                15
-                +
-                Math.random() * 20
-            )
-            + "px";
-
-
-        item.style.zIndex =
-            "9999";
-
-
-        item.style.pointerEvents =
-            "none";
-
-
-        document.body.appendChild(
-            item
-        );
-
-
-        const animation =
-            item.animate(
-                [
-                    {
-                        transform:
-                            "translateY(0) rotate(0)",
-                        opacity: 1
-                    },
-
-                    {
-                        transform:
-                            `translateY(${window.innerHeight + 100}px)
-                             rotate(720deg)`,
-                        opacity: 0
-                    }
-                ],
+            [
                 {
-                    duration:
-                        1800
-                        +
-                        Math.random() * 1200,
+                    transform:
+                        "translate(-50%,-50%) scale(0)",
+                    opacity: 0
+                },
 
-                    easing:
-                        "cubic-bezier(.2,.8,.4,1)"
+                {
+                    transform:
+                        "translate(-50%,-50%) scale(1)",
+                    opacity: 1
+                },
+
+                {
+                    transform:
+                        `translate(
+                            ${Math.cos(angle) * distance}px,
+                            ${Math.sin(angle) * distance}px
+                        )
+                        scale(1.2)`,
+
+                    opacity: 0
                 }
-            );
 
+            ],
 
-        animation.onfinish =
-            () => {
+            {
+                duration:
+                    1200
+                    + Math.random() * 500,
 
-                item.remove();
+                easing: "ease-out"
+            }
 
-            };
+        ).onfinish = () => {
+
+            heart.remove();
+
+        };
 
     }
 
 }
+
+
+/* ==========================================
+   RESTART
+========================================== */
+
+function restartGame() {
+
+    location.reload();
+
+}
+
+
+/* ==========================================
+   START MUSIC AFTER FIRST TOUCH
+========================================== */
+
+document.addEventListener(
+    "click",
+    () => {
+
+        if (!musicPlaying) {
+
+            startMusic();
+
+        }
+
+    },
+    {
+        once: true
+    }
+);
+
+
+/* ==========================================
+   KEYBOARD SUPPORT
+========================================== */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (event.key === "ArrowRight") {
+
+            nextPhoto();
+
+        }
+
+        if (event.key === "ArrowLeft") {
+
+            previousPhoto();
+
+        }
+
+    }
+);
