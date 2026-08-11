@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     >
 
     <title>ถึงแม่...จากลูก 💙</title>
@@ -18,18 +20,20 @@
          MUSIC
     ========================== -->
 
-    <audio
-        id="bgMusic"
-        src="music.mp3"
-        loop
-    ></audio>
+    <audio id="bgMusic" src="music.mp3" loop></audio>
+
+
+    <!-- =========================
+         MUSIC BUTTON
+    ========================== -->
 
     <button
         id="musicButton"
         class="music-button"
+        type="button"
         aria-label="เปิดปิดเพลง"
     >
-        ♪
+        🔊
     </button>
 
 
@@ -37,31 +41,29 @@
          DECORATION
     ========================== -->
 
-    <div class="cloud cloud-1"></div>
-    <div class="cloud cloud-2"></div>
-
-    <div class="floating floating-1">♡</div>
-    <div class="floating floating-2">✦</div>
-    <div class="floating floating-3">♡</div>
-    <div class="floating floating-4">✿</div>
+    <div class="decor decor-1">♡</div>
+    <div class="decor decor-2">✦</div>
+    <div class="decor decor-3">♡</div>
+    <div class="decor decor-4">✿</div>
 
 
-    <!-- =========================
-         PAGE 1 : COVER
-    ========================== -->
+    <!-- =====================================================
+         PAGE 1
+         COVER
+    ====================================================== -->
 
-    <main
-        id="coverPage"
+    <section
+        id="pageCover"
         class="page active"
     >
 
-        <div class="cover">
+        <div class="cover-content">
 
             <div class="date">
-                12 • 08 • 2026
+                12 • 08 • 2569
             </div>
 
-            <div class="cover-flower">
+            <div class="flower">
                 🌷
             </div>
 
@@ -69,31 +71,34 @@
                 ถึงแม่...
             </h1>
 
-            <p class="cover-subtitle">
-                สมุดความทรงจำเล่มเล็ก<br>
-                จากลูกคนหนึ่งที่รักแม่มากที่สุด
+            <p class="cover-text">
+                มีบางอย่างที่ลูก<br>
+                อยากบอกแม่
             </p>
 
+
+            <!-- ENVELOPE -->
 
             <div
                 id="envelope"
                 class="envelope"
             >
 
-                <div class="envelope-back"></div>
+                <div class="envelope-body"></div>
 
-                <div class="letter-preview">
+                <div class="letter">
 
-                    <span>💙</span>
+                    <div class="letter-heart">
+                        💙
+                    </div>
 
                     <strong>
                         ถึงแม่คนเก่ง
                     </strong>
 
-                    <small>
-                        มีบางอย่างที่ลูก<br>
-                        อยากบอกแม่...
-                    </small>
+                    <span>
+                        เปิดดูนะ
+                    </span>
 
                 </div>
 
@@ -109,34 +114,36 @@
 
 
             <button
-                id="openEnvelope"
-                class="primary-button"
+                id="openLetterButton"
+                class="main-button"
+                type="button"
             >
-                เปิดจดหมาย 💌
+                💌 เปิดจดหมายจากลูก
             </button>
 
-            <p class="tap-hint">
-                แตะเพื่อเปิด
+            <p class="hint">
+                แตะปุ่มนี้เพื่อเริ่มนะคะ
             </p>
 
         </div>
 
-    </main>
+    </section>
 
 
-    <!-- =========================
-         PAGE 2 : INTRO
-    ========================== -->
+    <!-- =====================================================
+         PAGE 2
+         INTRO
+    ====================================================== -->
 
     <section
-        id="introPage"
+        id="pageIntro"
         class="page"
     >
 
-        <div class="memory-card">
+        <div class="card">
 
-            <div class="page-number">
-                — 01 —
+            <div class="page-label">
+                MEMORY BOOK
             </div>
 
             <div class="book-icon">
@@ -148,24 +155,28 @@
             </h2>
 
             <p>
-                สมุดเล่มนี้ไม่มีเรื่องราวยิ่งใหญ่
-                ไม่มีของขวัญราคาแพง
+                สมุดเล่มนี้ไม่มีของขวัญราคาแพง
+            </p>
+
+            <p>
+                ไม่มีคำพูดสวยหรูมากมาย
             </p>
 
             <p>
                 มีเพียงความรู้สึกเล็ก ๆ
-                ที่ลูกอยากเก็บไว้
+                ที่ลูกอยากเก็บเอาไว้
                 และอยากให้แม่ได้อ่าน
             </p>
 
             <div class="quote">
-                “เพราะบางคำที่เราไม่ค่อยได้พูด<br>
-                อาจเป็นคำที่สำคัญที่สุด”
+                “บางคำเราอาจไม่ค่อยได้พูด<br>
+                แต่ลูกอยากให้แม่รู้เสมอ”
             </div>
 
             <button
-                id="startMemory"
-                class="primary-button"
+                id="startButton"
+                class="main-button"
+                type="button"
             >
                 เปิดหน้าต่อไป 💙
             </button>
@@ -175,66 +186,73 @@
     </section>
 
 
-    <!-- =========================
-         PAGE 3 : MESSAGE 1
-    ========================== -->
+    <!-- =====================================================
+         PAGE 3
+         MESSAGE 1
+    ====================================================== -->
 
     <section
-        id="message1"
+        id="pageMessage1"
         class="page"
     >
 
-        <div class="memory-card message-card">
+        <div class="card message-card">
 
             <div class="page-number">
-                — 02 —
+                01
             </div>
 
             <div class="message-icon">
                 🌱
             </div>
 
-            <span class="chapter">
-                CHAPTER 01
-            </span>
+            <div class="chapter">
+                CHAPTER ONE
+            </div>
 
             <h2>
                 ขอบคุณที่ให้หนูเกิดมา
             </h2>
 
+
             <div
-                class="secret-message"
-                data-message="1"
+                id="messageContent1"
+                class="message-content"
             >
 
                 <p>
                     ตั้งแต่วันที่หนูเกิดมา
-                    หนูอาจยังไม่รู้ว่าโลกใบนี้
-                    จะมีอะไรเกิดขึ้นบ้าง
+                    หนูยังไม่รู้เลยว่า
+                    โลกใบนี้จะเป็นอย่างไร
                 </p>
 
                 <p>
                     แต่สิ่งหนึ่งที่หนูโชคดีที่สุด
-                    คือการได้เกิดมาเป็นลูกของแม่
+                    คือการได้เกิดมา
+                    เป็นลูกของแม่
                 </p>
 
-                <p class="highlight">
-                    ขอบคุณนะ ที่เลือกจะรักหนู
+                <p class="important">
+                    ขอบคุณแม่ที่รักหนู
                     ตั้งแต่วันแรกที่หนูลืมตา
                 </p>
 
             </div>
 
+
             <button
-                class="open-message"
-                data-target="1"
+                class="message-button"
+                data-message="1"
+                type="button"
             >
                 💌 เปิดข้อความ
             </button>
 
+
             <button
                 class="next-button hidden"
-                data-next="message2"
+                data-next="pageMessage2"
+                type="button"
             >
                 อ่านหน้าต่อไป →
             </button>
@@ -244,36 +262,38 @@
     </section>
 
 
-    <!-- =========================
-         PAGE 4 : MESSAGE 2
-    ========================== -->
+    <!-- =====================================================
+         PAGE 4
+         MESSAGE 2
+    ====================================================== -->
 
     <section
-        id="message2"
+        id="pageMessage2"
         class="page"
     >
 
-        <div class="memory-card message-card">
+        <div class="card message-card">
 
             <div class="page-number">
-                — 03 —
+                02
             </div>
 
             <div class="message-icon">
                 🧸
             </div>
 
-            <span class="chapter">
-                CHAPTER 02
-            </span>
+            <div class="chapter">
+                CHAPTER TWO
+            </div>
 
             <h2>
                 ขอบคุณที่อยู่ข้างหนู
             </h2>
 
+
             <div
-                class="secret-message"
-                data-message="2"
+                id="messageContent2"
+                class="message-content"
             >
 
                 <p>
@@ -282,33 +302,37 @@
                 </p>
 
                 <p>
-                    ในวันที่หนูร้องไห้
-                    แม่อาจไม่ได้แก้ทุกปัญหาให้
+                    ในวันที่หนูเสียใจ
+                    แม่อาจช่วยแก้ปัญหาให้ไม่ได้ทุกเรื่อง
                 </p>
 
                 <p>
-                    แต่แม่อยู่ตรงนั้นเสมอ
-                    และนั่นก็เพียงพอแล้ว
+                    แต่แม่ก็ยังอยู่ตรงนั้น
+                    ไม่เคยหายไปไหน
                 </p>
 
-                <p class="highlight">
-                    หนูอาจเดินมาได้ไกล
-                    เพราะรู้ว่าเวลาหันกลับมา
-                    ยังมีแม่อยู่ข้างหลังเสมอ
+                <p class="important">
+                    หนูเดินมาได้ไกลขนาดนี้
+                    เพราะรู้ว่าหันกลับมาเมื่อไหร่
+                    ก็ยังมีแม่อยู่ข้างหลัง
                 </p>
 
             </div>
 
+
             <button
-                class="open-message"
-                data-target="2"
+                class="message-button"
+                data-message="2"
+                type="button"
             >
                 💌 เปิดข้อความ
             </button>
 
+
             <button
                 class="next-button hidden"
-                data-next="message3"
+                data-next="pageMessage3"
+                type="button"
             >
                 อ่านหน้าต่อไป →
             </button>
@@ -318,71 +342,77 @@
     </section>
 
 
-    <!-- =========================
-         PAGE 5 : MESSAGE 3
-    ========================== -->
+    <!-- =====================================================
+         PAGE 5
+         MESSAGE 3
+    ====================================================== -->
 
     <section
-        id="message3"
+        id="pageMessage3"
         class="page"
     >
 
-        <div class="memory-card message-card">
+        <div class="card message-card">
 
             <div class="page-number">
-                — 04 —
+                03
             </div>
 
             <div class="message-icon">
                 🌷
             </div>
 
-            <span class="chapter">
-                CHAPTER 03
-            </span>
+            <div class="chapter">
+                CHAPTER THREE
+            </div>
 
             <h2>
                 หนูโตขึ้นแล้วนะ
             </h2>
 
+
             <div
-                class="secret-message"
-                data-message="3"
+                id="messageContent3"
+                class="message-content"
             >
 
                 <p>
-                    วันนี้หนูโตขึ้นมากกว่าเมื่อก่อน
-                    มีความฝัน มีงาน มีเรื่องให้ต้องคิด
+                    วันนี้หนูโตขึ้น
+                    มีงาน มีความฝัน
                     และมีเส้นทางของตัวเอง
                 </p>
 
                 <p>
-                    บางครั้งหนูอาจทำให้แม่เป็นห่วง
-                    หรืออาจไม่ได้กลับไปหาแม่บ่อยเท่าที่ควร
+                    บางครั้งหนูอาจไม่ได้กลับไปหาแม่บ่อย
+                    หรืออาจทำให้แม่ต้องเป็นห่วง
                 </p>
 
                 <p>
-                    แต่ไม่ว่าโตแค่ไหน...
+                    แต่ไม่ว่าจะโตขึ้นแค่ไหน
                 </p>
 
-                <p class="highlight">
-                    หนูก็ยังเป็นเด็กคนเดิม
+                <p class="important">
+                    หนูก็ยังเป็นลูกคนเดิม
                     ที่อยากกลับไปกอดแม่
                     ในวันที่เหนื่อยที่สุด
                 </p>
 
             </div>
 
+
             <button
-                class="open-message"
-                data-target="3"
+                class="message-button"
+                data-message="3"
+                type="button"
             >
                 💌 เปิดข้อความ
             </button>
 
+
             <button
                 class="next-button hidden"
-                data-next="message4"
+                data-next="pageMessage4"
+                type="button"
             >
                 อ่านหน้าต่อไป →
             </button>
@@ -392,36 +422,38 @@
     </section>
 
 
-    <!-- =========================
-         PAGE 6 : MESSAGE 4
-    ========================== -->
+    <!-- =====================================================
+         PAGE 6
+         MESSAGE 4
+    ====================================================== -->
 
     <section
-        id="message4"
+        id="pageMessage4"
         class="page"
     >
 
-        <div class="memory-card message-card">
+        <div class="card message-card">
 
             <div class="page-number">
-                — 05 —
+                04
             </div>
 
             <div class="message-icon">
                 🫂
             </div>
 
-            <span class="chapter">
-                CHAPTER 04
-            </span>
+            <div class="chapter">
+                CHAPTER FOUR
+            </div>
 
             <h2>
                 สิ่งที่อยากบอกแม่
             </h2>
 
+
             <div
-                class="secret-message"
-                data-message="4"
+                id="messageContent4"
+                class="message-content"
             >
 
                 <p>
@@ -430,9 +462,9 @@
                 </p>
 
                 <p>
-                    เพราะฉะนั้นตั้งแต่วันนี้
-                    หนูอยากใช้เวลาที่มี
-                    บอกรักแม่ให้มากขึ้น
+                    เพราะอย่างนั้น
+                    ตั้งแต่วันนี้หนูอยากบอกรักแม่
+                    ให้มากกว่าเดิม
                 </p>
 
                 <p>
@@ -441,24 +473,28 @@
                     อยากถ่ายรูปด้วยกันเยอะ ๆ
                 </p>
 
-                <p class="highlight">
-                    และอยากให้แม่รู้ว่า
-                    การมีแม่อยู่ในชีวิต
-                    คือของขวัญที่ดีที่สุดของหนู
+                <p class="important">
+                    เพราะการมีแม่อยู่ในชีวิต
+                    คือของขวัญที่ดีที่สุด
+                    ที่ลูกเคยได้รับ
                 </p>
 
             </div>
 
+
             <button
-                class="open-message"
-                data-target="4"
+                class="message-button"
+                data-message="4"
+                type="button"
             >
                 💌 เปิดข้อความ
             </button>
 
+
             <button
                 class="next-button hidden"
-                data-next="secretPage"
+                data-next="pageGift"
+                type="button"
             >
                 มีอีกอย่างอยากบอก... 💙
             </button>
@@ -468,32 +504,27 @@
     </section>
 
 
-    <!-- =========================
-         PAGE 7 : SECRET
-    ========================== -->
+    <!-- =====================================================
+         PAGE 7
+         GIFT
+    ====================================================== -->
 
     <section
-        id="secretPage"
+        id="pageGift"
         class="page"
     >
 
-        <div class="memory-card secret-card">
+        <div class="card gift-card">
 
-            <div class="page-number">
-                — SPECIAL PAGE —
+            <div class="page-label">
+                SPECIAL MESSAGE
             </div>
 
             <div
-                id="gift"
-                class="gift"
+                id="giftBox"
+                class="gift-box"
             >
-
-                <div class="gift-box">
-                    🎁
-                </div>
-
-                <div class="gift-glow"></div>
-
+                🎁
             </div>
 
             <h2>
@@ -501,22 +532,23 @@
             </h2>
 
             <p>
-                กดที่กล่องของขวัญ
-                แล้วอ่านข้อความข้างใน
+                แตะที่กล่องของขวัญ
+                เพื่อเปิดข้อความสุดท้าย
             </p>
 
+
             <div
-                id="secretText"
-                class="secret-final hidden"
+                id="finalMessage"
+                class="final-message hidden"
             >
 
                 <div class="big-heart">
                     💙
                 </div>
 
-                <p>
+                <h3>
                     แม่...
-                </p>
+                </h3>
 
                 <p>
                     ถ้าวันหนึ่งหนูมีเงินมากพอ
@@ -529,14 +561,14 @@
                 </p>
 
                 <p>
-                    แต่ตอนนี้สิ่งที่หนูมี
+                    แต่วันนี้สิ่งที่หนูมี
                     และให้แม่ได้ทุกวัน
                     คือความรักของหนู
                 </p>
 
-                <p class="big-love">
+                <div class="big-love">
                     หนูรักแม่นะ
-                </p>
+                </div>
 
                 <p>
                     รักมากกว่าที่คำว่า “รัก”
@@ -549,11 +581,13 @@
 
             </div>
 
+
             <button
                 id="timelineButton"
-                class="primary-button hidden"
+                class="main-button hidden"
+                type="button"
             >
-                เปิดเรื่องราวของเรา 📖
+                📖 ดูเรื่องราวของเรา
             </button>
 
         </div>
@@ -561,22 +595,27 @@
     </section>
 
 
-    <!-- =========================
-         PAGE 8 : TIMELINE
-    ========================== -->
+    <!-- =====================================================
+         PAGE 8
+         TIMELINE
+    ====================================================== -->
 
     <section
-        id="timelinePage"
+        id="pageTimeline"
         class="page"
     >
 
         <div class="timeline-container">
 
-            <div class="timeline-title">
+            <div class="timeline-header">
 
-                <span>
+                <div class="page-label">
                     OUR STORY
-                </span>
+                </div>
+
+                <div class="timeline-heart">
+                    💙
+                </div>
 
                 <h2>
                     เรื่องราวของเรา
@@ -593,21 +632,23 @@
             <div class="timeline">
 
 
+                <!-- ITEM 1 -->
+
                 <div class="timeline-item">
 
                     <div class="timeline-dot">
-                        ♡
+                        1
                     </div>
 
                     <div class="timeline-card">
 
-                        <span>
-                            CHAPTER 01
-                        </span>
-
-                        <div>
+                        <div class="timeline-icon">
                             👩‍👧
                         </div>
+
+                        <span>
+                            CHAPTER ONE
+                        </span>
 
                         <h3>
                             จุดเริ่มต้น
@@ -625,21 +666,23 @@
                 </div>
 
 
+                <!-- ITEM 2 -->
+
                 <div class="timeline-item">
 
                     <div class="timeline-dot">
-                        ♡
+                        2
                     </div>
 
                     <div class="timeline-card">
 
-                        <span>
-                            CHAPTER 02
-                        </span>
-
-                        <div>
+                        <div class="timeline-icon">
                             🧸
                         </div>
+
+                        <span>
+                            CHAPTER TWO
+                        </span>
 
                         <h3>
                             เติบโตมาด้วยกัน
@@ -648,8 +691,8 @@
                         <p>
                             ผ่านวันที่หนูงอแง
                             วันที่แม่เหนื่อย
-                            และอีกหลายวันที่เรา
-                            ยังมีรอยยิ้มให้กัน
+                            และอีกหลายวันที่
+                            เรามีรอยยิ้มให้กัน
                         </p>
 
                     </div>
@@ -657,21 +700,23 @@
                 </div>
 
 
+                <!-- ITEM 3 -->
+
                 <div class="timeline-item">
 
                     <div class="timeline-dot">
-                        ♡
+                        3
                     </div>
 
                     <div class="timeline-card">
 
-                        <span>
-                            CHAPTER 03
-                        </span>
-
-                        <div>
+                        <div class="timeline-icon">
                             🌷
                         </div>
+
+                        <span>
+                            CHAPTER THREE
+                        </span>
 
                         <h3>
                             หนูโตขึ้น
@@ -688,21 +733,23 @@
                 </div>
 
 
+                <!-- ITEM 4 -->
+
                 <div class="timeline-item">
 
                     <div class="timeline-dot">
-                        ♡
+                        4
                     </div>
 
                     <div class="timeline-card">
 
-                        <span>
-                            CHAPTER 04
-                        </span>
-
-                        <div>
+                        <div class="timeline-icon">
                             🫂
                         </div>
+
+                        <span>
+                            CHAPTER FOUR
+                        </span>
 
                         <h3>
                             วันนี้
@@ -719,33 +766,37 @@
                 </div>
 
 
-                <div class="timeline-last">
+            </div>
 
+
+            <div class="timeline-end">
+
+                <div class="end-heart">
                     💙
-
-                    <h3>
-                        เรื่องราวของเรา
-                    </h3>
-
-                    <p>
-                        ยังไม่จบแค่ตรงนี้
-                    </p>
-
-                    <small>
-                        ยังมีอีกหลายวันที่เราจะได้สร้าง
-                        ความทรงจำด้วยกัน
-                    </small>
-
                 </div>
+
+                <h3>
+                    เรื่องราวของเรา
+                </h3>
+
+                <p>
+                    ยังไม่จบแค่ตรงนี้
+                </p>
+
+                <small>
+                    ยังมีอีกหลายวันที่เราจะได้
+                    สร้างความทรงจำด้วยกัน
+                </small>
 
             </div>
 
 
             <button
                 id="albumButton"
-                class="primary-button"
+                class="main-button"
+                type="button"
             >
-                เปิดอัลบั้มของเรา 📸
+                📸 เปิดอัลบั้มของเรา
             </button>
 
         </div>
@@ -753,25 +804,30 @@
     </section>
 
 
-    <!-- =========================
-         PAGE 9 : ALBUM
-    ========================== -->
+    <!-- =====================================================
+         PAGE 9
+         ALBUM
+    ====================================================== -->
 
     <section
-        id="albumPage"
+        id="pageAlbum"
         class="page"
     >
 
-        <div class="album">
+        <div class="album-container">
 
             <div class="album-header">
 
-                <span>
+                <div class="page-label">
                     OUR MEMORIES
-                </span>
+                </div>
+
+                <div class="album-icon">
+                    📸
+                </div>
 
                 <h2>
-                    รูปของเรา 💙
+                    รูปของเรา
                 </h2>
 
                 <p>
@@ -782,103 +838,134 @@
             </div>
 
 
-            <div class="photo-book">
+            <div class="photo-grid">
 
 
-                <div class="photo photo-main">
+                <!-- PHOTO 1 -->
+
+                <div class="photo-card photo-large">
+
+                    <div class="photo-tape">
+                        ♥
+                    </div>
 
                     <div class="photo-frame">
 
                         <img
                             src="photo1.jpg"
-                            alt="ความทรงจำของแม่กับลูก"
+                            alt="รูปความทรงจำของแม่กับลูก"
                         >
 
                     </div>
 
-                    <p>
-                        “วันธรรมดาที่แสนพิเศษ”
-                    </p>
+                    <div class="photo-caption">
+                        วันธรรมดาที่แสนพิเศษ
+                    </div>
 
                 </div>
 
 
-                <div class="photo">
+                <!-- PHOTO 2 -->
+
+                <div class="photo-card">
+
+                    <div class="photo-tape">
+                        ♥
+                    </div>
 
                     <div class="photo-frame">
 
                         <img
                             src="photo2.jpg"
-                            alt="ความทรงจำ"
+                            alt="รูปความทรงจำ"
                         >
 
                     </div>
 
-                    <p>
-                        “มีแม่อยู่ตรงนี้ก็พอแล้ว”
-                    </p>
+                    <div class="photo-caption">
+                        มีแม่อยู่ตรงนี้ก็พอแล้ว
+                    </div>
 
                 </div>
 
 
-                <div class="photo">
+                <!-- PHOTO 3 -->
+
+                <div class="photo-card">
+
+                    <div class="photo-tape">
+                        ♥
+                    </div>
 
                     <div class="photo-frame">
 
                         <img
                             src="photo3.jpg"
-                            alt="ความทรงจำ"
+                            alt="รูปความทรงจำ"
                         >
 
                     </div>
 
-                    <p>
-                        “ความสุขที่ไม่ต้องพยายามหา”
-                    </p>
+                    <div class="photo-caption">
+                        ความสุขเล็ก ๆ ของเรา
+                    </div>
 
                 </div>
 
 
-                <div class="photo">
+                <!-- PHOTO 4 -->
+
+                <div class="photo-card">
+
+                    <div class="photo-tape">
+                        ♥
+                    </div>
 
                     <div class="photo-frame">
 
                         <img
                             src="photo4.jpg"
-                            alt="ความทรงจำ"
+                            alt="รูปความทรงจำ"
                         >
 
                     </div>
 
-                    <p>
-                        “ช่วงเวลาที่อยากจำไปนาน ๆ”
-                    </p>
+                    <div class="photo-caption">
+                        ช่วงเวลาที่อยากจำ
+                    </div>
 
                 </div>
 
 
-                <div class="photo photo-main">
+                <!-- PHOTO 5 -->
+
+                <div class="photo-card photo-large">
+
+                    <div class="photo-tape">
+                        ♥
+                    </div>
 
                     <div class="photo-frame">
 
                         <img
                             src="photo5.jpg"
-                            alt="ความทรงจำ"
+                            alt="รูปความทรงจำ"
                         >
 
                     </div>
 
-                    <p>
-                        “รักของแม่ จะเป็นบ้านของหนูเสมอ”
-                    </p>
+                    <div class="photo-caption">
+                        รักของแม่คือบ้านของหนู
+                    </div>
 
                 </div>
-
 
             </div>
 
 
-            <div class="album-end">
+            <!-- FINAL -->
+
+            <div class="album-final">
 
                 <div class="flowers">
                     🌷 🤍 🌷
@@ -889,18 +976,25 @@
                 </h2>
 
                 <p>
-                    ขอให้แม่มีความสุขมาก ๆ<br>
-                    สุขภาพแข็งแรง<br>
-                    และอยู่ให้ลูกกอดไปนาน ๆ นะ
+                    ขอให้แม่มีความสุขมาก ๆ
+                </p>
+
+                <p>
+                    สุขภาพแข็งแรง
+                </p>
+
+                <p>
+                    และอยู่ให้ลูกกอด
+                    ไปนาน ๆ นะ
                 </p>
 
                 <div class="final-love">
                     รักแม่ที่สุดเลย 💙
                 </div>
 
-                <small>
+                <div class="final-date">
                     12 สิงหาคม 2569
-                </small>
+                </div>
 
             </div>
 
@@ -910,10 +1004,12 @@
 
 
     <!-- EFFECT -->
+
     <div id="effectLayer"></div>
 
 
     <script src="script.js"></script>
 
 </body>
+
 </html>
