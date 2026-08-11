@@ -1,6 +1,7 @@
-/* =====================================================
-   RESET
-===================================================== */
+/* ================================
+   Mother's Day Surprise 🌷
+   Step 2 - Main Design
+================================ */
 
 * {
     margin: 0;
@@ -8,1579 +9,376 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html,
+body {
+    width: 100%;
+    min-height: 100%;
 }
 
 body {
-    font-family:
-        "Segoe UI",
-        "Noto Sans Thai",
-        "Tahoma",
-        sans-serif;
+    font-family: "Noto Sans Thai", "Prompt", sans-serif;
+    background: linear-gradient(
+        135deg,
+        #fff7f9 0%,
+        #fff0f4 50%,
+        #fdf5ee 100%
+    );
 
-    background:
-        linear-gradient(
-            135deg,
-            #fafdff 0%,
-            #eaf7ff 45%,
-            #dff3ff 100%
-        );
-
-    color: #28485f;
-
-    min-height: 100vh;
-
+    color: #6b4b4b;
     overflow-x: hidden;
 }
 
+/* ================================
+   Main Container
+================================ */
 
-/* =====================================================
-   BACKGROUND
-===================================================== */
-
-body::before {
-    content: "";
-
-    position: fixed;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    background:
-        radial-gradient(
-            circle at 10% 20%,
-            rgba(255,255,255,.9),
-            transparent 25%
-        ),
-        radial-gradient(
-            circle at 90% 80%,
-            rgba(255,255,255,.8),
-            transparent 25%
-        );
-
-    z-index: -2;
-}
-
-.sky-decor {
-    position: fixed;
-
-    width: 100%;
-    height: 100%;
-
-    top: 0;
-    left: 0;
-
-    pointer-events: none;
-
-    z-index: -1;
-}
-
-.sky-decor span {
-    position: absolute;
-
-    font-size: 50px;
-
-    opacity: .35;
-
-    animation: cloudMove 14s ease-in-out infinite;
-}
-
-.sky-decor span:nth-child(1) {
-    top: 8%;
-    left: 5%;
-}
-
-.sky-decor span:nth-child(2) {
-    top: 25%;
-    right: 4%;
-
-    animation-delay: 3s;
-}
-
-.sky-decor span:nth-child(3) {
-    bottom: 15%;
-    left: 10%;
-
-    animation-delay: 6s;
-}
-
-@keyframes cloudMove {
-
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    50% {
-        transform: translateX(25px);
-    }
-}
-
-
-/* =====================================================
-   APP
-===================================================== */
-
-#app {
-    width: 100%;
-    min-height: 100vh;
-}
-
-
-/* =====================================================
-   SCENE
-===================================================== */
-
-.scene {
+.container {
     min-height: 100vh;
 
-    width: 100%;
-
-    display: none;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 30px 18px;
-
-    animation: sceneIn .7s ease;
-}
-
-.scene.active {
     display: flex;
-}
+    justify-content: center;
+    align-items: center;
 
-@keyframes sceneIn {
-
-    from {
-        opacity: 0;
-        transform: translateY(18px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* =====================================================
-   CARDS
-===================================================== */
-
-.start-card,
-.scene-card,
-.bloom-card,
-.letter-card,
-.gallery-card,
-.wheel-card,
-.mission-card,
-.end-card {
-
-    width: min(94vw, 650px);
-
-    background:
-        rgba(255,255,255,.88);
-
-    border:
-        1px solid rgba(255,255,255,.95);
-
-    border-radius: 32px;
-
-    padding: 36px 28px;
-
-    text-align: center;
-
-    box-shadow:
-        0 20px 60px rgba(87,151,185,.15),
-        0 5px 20px rgba(87,151,185,.08);
-
-    backdrop-filter: blur(10px);
+    padding: 30px 20px;
 
     position: relative;
-
     overflow: hidden;
 }
 
-.start-card::before,
-.scene-card::before,
-.bloom-card::before,
-.letter-card::before,
-.gallery-card::before,
-.wheel-card::before,
-.mission-card::before,
-.end-card::before {
+/* ================================
+   Background Decorations
+================================ */
 
+.container::before,
+.container::after {
     content: "";
-
     position: absolute;
-
-    width: 180px;
-    height: 180px;
-
-    background: #e6f7ff;
-
-    border-radius: 50%;
-
-    top: -90px;
-    right: -90px;
-
-    opacity: .6;
-}
-
-
-/* =====================================================
-   TYPOGRAPHY
-===================================================== */
-
-.small-label {
-
-    display: inline-block;
-
-    background: #e9f7ff;
-
-    color: #3982a9;
-
-    padding: 7px 15px;
-
-    border-radius: 50px;
-
-    font-size: 13px;
-
-    margin-bottom: 12px;
-
-    font-weight: 600;
-}
-
-h1 {
-
-    font-size: clamp(30px, 7vw, 48px);
-
-    color: #235675;
-
-    line-height: 1.35;
-
-    margin-bottom: 18px;
-}
-
-h2 {
-
-    font-size: clamp(25px, 6vw, 34px);
-
-    color: #285e7c;
-
-    line-height: 1.4;
-
-    margin-bottom: 15px;
-}
-
-h3 {
-
-    font-size: 25px;
-
-    color: #285e7c;
-
-    margin-bottom: 10px;
-}
-
-p {
-
-    font-size: 16px;
-
-    line-height: 1.9;
-
-    color: #547286;
-}
-
-.scene-description {
-    margin-bottom: 5px;
-}
-
-
-/* =====================================================
-   STEP NUMBER
-===================================================== */
-
-.step-number {
-
-    position: absolute;
-
-    top: 18px;
-    right: 22px;
-
-    font-size: 12px;
-
-    color: #8ab2c8;
-
-    font-weight: 700;
-}
-
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-
-button {
-
-    font-family: inherit;
-
-    cursor: pointer;
-
-    border: none;
-
-    -webkit-tap-highlight-color: transparent;
-}
-
-.primary-btn {
-
-    background:
-        linear-gradient(
-            135deg,
-            #6bbbe0,
-            #418fba
-        );
-
-    color: white;
-
-    padding: 14px 27px;
-
-    border-radius: 50px;
-
-    font-size: 16px;
-
-    font-weight: 700;
-
-    box-shadow:
-        0 8px 20px rgba(65,143,186,.25);
-
-    transition:
-        transform .2s ease,
-        box-shadow .2s ease;
-}
-
-.primary-btn:hover {
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 12px 25px rgba(65,143,186,.32);
-}
-
-.primary-btn:active {
-
-    transform: scale(.96);
-}
-
-.secondary-btn {
-
-    background: white;
-
-    color: #4384a4;
-
-    border:
-        1px solid #c9e5f2;
-
-    padding: 11px 20px;
-
-    border-radius: 50px;
-
-    font-size: 15px;
-
-    font-weight: 600;
-
-    transition: .2s;
-}
-
-.secondary-btn:hover {
-
-    background: #eefaff;
-
-    transform: translateY(-2px);
-}
-
-
-/* =====================================================
-   START
-===================================================== */
-
-.start-card {
-
-    padding-top: 48px;
-}
-
-.start-flower {
-
-    font-size: 80px;
-
-    margin-bottom: 10px;
-
-    animation:
-        flowerFloat 3s ease-in-out infinite;
-}
-
-@keyframes flowerFloat {
-
-    0%,
-    100% {
-        transform: translateY(0) rotate(-4deg);
-    }
-
-    50% {
-        transform: translateY(-12px) rotate(4deg);
-    }
-}
-
-.start-text {
-
-    margin-bottom: 25px;
-}
-
-.music-hint {
-
-    font-size: 12px;
-
-    margin-top: 15px;
-
-    color: #8aabbc;
-}
-
-
-/* =====================================================
-   SCENE 1 : PLANT
-===================================================== */
-
-.plant-area {
 
     width: 280px;
-    height: 310px;
-
-    margin: 15px auto;
-
-    position: relative;
-}
-
-.sun {
-
-    position: absolute;
-
-    right: 25px;
-    top: 15px;
-
-    font-size: 45px;
-
-    animation:
-        sunPulse 3s infinite;
-}
-
-@keyframes sunPulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.1);
-    }
-}
-
-.plant {
-
-    position: absolute;
-
-    bottom: 52px;
-    left: 50%;
-
-    width: 120px;
-    height: 220px;
-
-    transform:
-        translateX(-50%)
-        scale(.72);
-
-    transform-origin: bottom;
-
-    transition:
-        transform 1s ease;
-}
-
-.plant.grow-1 {
-    transform:
-        translateX(-50%)
-        scale(.82);
-}
-
-.plant.grow-2 {
-    transform:
-        translateX(-50%)
-        scale(.94);
-}
-
-.plant.grow-3 {
-
-    transform:
-        translateX(-50%)
-        scale(1.08);
-}
-
-.stem {
-
-    position: absolute;
-
-    width: 12px;
-
-    height: 160px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #76b987,
-            #4f9a69
-        );
-
-    border-radius: 20px;
-
-    left: 54px;
-
-    bottom: 0;
-
-    transform-origin: bottom;
-}
-
-.leaf {
-
-    position: absolute;
-
-    width: 65px;
-    height: 32px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #8ed19d,
-            #55a96f
-        );
-
-    border-radius:
-        100% 0 100% 0;
-
-    opacity: 0;
-
-    transition: opacity .8s;
-}
-
-.leaf-left {
-
-    left: 3px;
-    bottom: 80px;
-
-    transform: rotate(-30deg);
-}
-
-.leaf-right {
-
-    right: 3px;
-    bottom: 115px;
-
-    transform:
-        rotate(30deg)
-        scaleX(-1);
-}
-
-.plant.grow-2 .leaf,
-.plant.grow-3 .leaf {
-
-    opacity: 1;
-}
-
-.flower-bud {
-
-    position: absolute;
-
-    top: 0;
-    left: 37px;
-
-    width: 55px;
-    height: 55px;
-
-    opacity: 0;
-
-    transform: scale(.3);
-
-    transition:
-        opacity .8s,
-        transform .8s;
-}
-
-.plant.grow-3 .flower-bud {
-
-    opacity: 1;
-
-    transform: scale(1);
-}
-
-.petal {
-
-    position: absolute;
-
-    width: 30px;
-    height: 30px;
-
-    background: white;
+    height: 280px;
 
     border-radius: 50%;
+
+    filter: blur(60px);
+
+    opacity: 0.45;
+
+    z-index: 0;
+}
+
+.container::before {
+    background: #ffd6e2;
+
+    top: -100px;
+    left: -100px;
+}
+
+.container::after {
+    background: #ffe4c7;
+
+    bottom: -100px;
+    right: -100px;
+}
+
+/* ================================
+   Surprise Card
+================================ */
+
+.surprise-card {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 45px 28px 40px;
+
+    background: rgba(255, 255, 255, 0.78);
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+
+    border-radius: 30px;
 
     box-shadow:
-        0 2px 5px rgba(80,130,150,.12);
-}
+        0 20px 60px rgba(180, 110, 130, 0.15),
+        0 5px 20px rgba(180, 110, 130, 0.08);
 
-.p1 {
-    left: 12px;
-    top: 0;
-}
+    backdrop-filter: blur(12px);
 
-.p2 {
-    left: 0;
-    top: 15px;
-}
+    text-align: center;
 
-.p3 {
-    right: 0;
-    top: 15px;
-}
-
-.p4 {
-    left: 12px;
-    bottom: 0;
-}
-
-.p5 {
-    left: 12px;
-    top: 14px;
-}
-
-.flower-center {
-
-    position: absolute;
-
-    width: 13px;
-    height: 13px;
-
-    background: #f6d778;
-
-    border-radius: 50%;
-
-    top: 20px;
-    left: 21px;
+    position: relative;
 
     z-index: 2;
 }
 
-.soil {
+/* ================================
+   Flower
+================================ */
 
-    position: absolute;
-
-    bottom: 40px;
-    left: 50%;
-
-    width: 170px;
-    height: 32px;
-
-    transform: translateX(-50%);
-
-    background: #9a7458;
-
-    border-radius:
-        50% 50% 45% 45%;
-}
-
-.water-progress {
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    margin: 0 auto 20px;
-
-    width: 220px;
-}
-
-.water-dot {
-
-    width: 15px;
-    height: 15px;
-
-    border-radius: 50%;
-
-    background: #d5ebf5;
-
-    border: 3px solid white;
-
-    box-shadow:
-        0 0 0 1px #a7d2e5;
-
-    transition: .4s;
-}
-
-.water-dot.done {
-
-    background: #58acd0;
-
-    box-shadow:
-        0 0 0 3px #d8f1ff;
-}
-
-.water-line {
-
-    width: 55px;
-
-    height: 3px;
-
-    background: #d5ebf5;
-}
-
-
-/* =====================================================
-   SCENE 2
-===================================================== */
-
-.bloom-card {
-
-    padding-top: 40px;
-}
-
-.big-flower {
-
-    font-size: 110px;
-
-    margin-bottom: 5px;
-
-    animation:
-        bloom 1.5s ease forwards,
-        flowerFloat 3s 1.5s ease-in-out infinite;
-}
-
-@keyframes bloom {
-
-    0% {
-        transform: scale(.2) rotate(-20deg);
-        opacity: 0;
-    }
-
-    70% {
-        transform: scale(1.15) rotate(8deg);
-    }
-
-    100% {
-        transform: scale(1) rotate(0);
-        opacity: 1;
-    }
-}
-
-.quote-box {
-
-    background: #f0faff;
-
-    border:
-        1px dashed #9fd3e8;
-
-    border-radius: 20px;
-
-    padding: 17px;
-
-    margin: 22px 0;
-
-    color: #4383a0;
-
-    font-weight: 600;
-}
-
-
-/* =====================================================
-   SCENE 3 : LETTER
-===================================================== */
-
-.letter-card {
-
-    max-height: 90vh;
-
-    overflow-y: auto;
-}
-
-.letter-icon {
-
-    font-size: 55px;
-
-    margin-bottom: 5px;
-}
-
-.letter {
-
-    background:
-        linear-gradient(
-            135deg,
-            #fbfeff,
-            #f0faff
-        );
-
-    border-radius: 22px;
-
-    padding: 22px;
-
-    margin: 20px 0;
-
-    text-align: left;
-
-    border-left:
-        4px solid #8bc9e5;
-}
-
-.letter p {
+.flower {
+    font-size: 58px;
 
     margin-bottom: 15px;
+
+    animation: gentleFloat 3s ease-in-out infinite;
 }
 
-.letter .highlight {
+/* ================================
+   Heading
+================================ */
 
-    text-align: center;
-
-    color: #347695;
-
-    font-size: 19px;
-
-    font-weight: 700;
-}
-
-.letter .love {
-
-    text-align: center;
-
-    font-size: 23px;
+.title {
+    font-size: 30px;
 
     font-weight: 700;
 
-    color: #347ca0;
+    color: #c76b83;
+
+    margin-bottom: 12px;
+
+    letter-spacing: 0.5px;
 }
 
+.subtitle {
+    font-size: 17px;
 
-/* =====================================================
-   SCENE 4 : GALLERY
-===================================================== */
+    color: #856b6b;
 
-.gallery-intro {
+    line-height: 1.8;
 
-    margin-bottom: 20px;
+    margin-bottom: 28px;
 }
 
-.photo-frame {
+/* ================================
+   Mom Name
+================================ */
+
+.mom-name {
+    display: inline-block;
+
+    font-size: 26px;
+
+    font-weight: 700;
+
+    color: #b95772;
+
+    margin: 5px 0 20px;
 
     position: relative;
-
-    width: min(100%, 420px);
-
-    aspect-ratio: 4 / 5;
-
-    margin: 0 auto 12px;
-
-    padding: 8px;
-
-    background: white;
-
-    border-radius: 20px;
-
-    box-shadow:
-        0 10px 35px rgba(55,110,135,.15);
-
-    overflow: hidden;
 }
 
-.photo-frame img {
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-
-    border-radius: 14px;
-
-    transition:
-        opacity .25s,
-        transform .35s;
-}
-
-.photo-frame img.change {
-
-    opacity: 0;
-
-    transform: scale(.97);
-}
-
-.photo-shine {
-
-    position: absolute;
-
-    top: 0;
-    left: -100%;
-
-    width: 50%;
-    height: 100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.45),
-            transparent
-        );
-
-    transform: skewX(-20deg);
-
-    pointer-events: none;
-}
-
-.photo-frame:hover .photo-shine {
-
-    animation: shine .8s ease;
-}
-
-@keyframes shine {
-
-    to {
-        left: 150%;
-    }
-}
-
-.photo-counter {
-
-    font-size: 14px;
-
-    color: #4e89a5;
-
-    font-weight: 700;
-
-    margin-bottom: 7px;
-}
-
-.photo-caption {
-
-    min-height: 30px;
-
-    font-size: 14px;
-
-    margin-bottom: 15px;
-}
-
-.gallery-controls {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 10px;
-
-    margin-bottom: 20px;
-}
-
-
-/* =====================================================
-   SCENE 5 : WHEEL
-===================================================== */
-
-.wheel-card {
-
-    overflow: visible;
-}
-
-.wheel-hint {
-
-    margin: 15px auto;
-
-    font-size: 14px;
-}
-
-.wheel-wrapper {
-
-    position: relative;
-
-    width: 310px;
-    height: 330px;
-
-    margin: 15px auto;
-}
-
-.wheel {
-
-    position: absolute;
-
-    width: 290px;
-    height: 290px;
-
-    left: 10px;
-    top: 25px;
-
-    border-radius: 50%;
-
-    background:
-        conic-gradient(
-            #aee0f4 0deg 72deg,
-            #ffffff 72deg 144deg,
-            #bfe8f7 144deg 216deg,
-            #ffffff 216deg 288deg,
-            #a8dced 288deg 360deg
-        );
-
-    border:
-        8px solid white;
-
-    box-shadow:
-        0 12px 30px rgba(65,130,160,.18);
-
-    transition:
-        transform 4s cubic-bezier(.15,.8,.15,1);
-
-    transform: rotate(0deg);
-}
-
-.wheel::after {
-
+.mom-name::after {
     content: "";
 
     position: absolute;
 
-    inset: 15px;
+    left: 10%;
+    right: 10%;
 
-    border:
-        2px dashed rgba(62,131,160,.2);
+    bottom: -7px;
 
-    border-radius: 50%;
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #e99aae,
+        transparent
+    );
 }
 
-.wheel-center {
+/* ================================
+   Message
+================================ */
 
-    position: absolute;
+.message {
+    font-size: 16px;
 
-    width: 62px;
-    height: 62px;
+    line-height: 1.9;
 
-    background: white;
+    color: #765f5f;
 
-    border-radius: 50%;
+    margin-bottom: 30px;
+}
 
-    left: 50%;
-    top: 50%;
+/* ================================
+   Open Button
+================================ */
 
-    transform: translate(-50%,-50%);
+.open-btn {
+    border: none;
 
-    z-index: 5;
+    padding: 15px 34px;
 
-    display: flex;
+    border-radius: 50px;
 
-    align-items: center;
-    justify-content: center;
+    background: linear-gradient(
+        135deg,
+        #e98fa5,
+        #d96f8b
+    );
 
-    font-size: 28px;
+    color: white;
+
+    font-size: 17px;
+
+    font-family: inherit;
+
+    font-weight: 600;
+
+    cursor: pointer;
 
     box-shadow:
-        0 4px 15px rgba(40,100,130,.2);
+        0 10px 25px rgba(217, 111, 139, 0.25);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
-.wheel-pointer {
+.open-btn:hover {
+    transform: translateY(-3px);
 
-    position: absolute;
-
-    z-index: 10;
-
-    top: 0;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    color: #397f9e;
-
-    font-size: 36px;
-
-    filter:
-        drop-shadow(0 3px 4px rgba(50,100,120,.2));
+    box-shadow:
+        0 15px 30px rgba(217, 111, 139, 0.35);
 }
 
-.spin-btn {
-
-    margin-top: 0;
+.open-btn:active {
+    transform: scale(0.96);
 }
 
-.spin-status {
+/* ================================
+   Small Heart
+================================ */
 
-    margin-top: 12px;
+.heart {
+    display: inline-block;
+
+    margin-left: 5px;
+
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+/* ================================
+   Bottom Text
+================================ */
+
+.bottom-text {
+    margin-top: 25px;
 
     font-size: 13px;
 
-    color: #83a6b7;
+    color: #a28b8b;
 }
 
+/* ================================
+   Floating Decorations
+================================ */
 
-/* =====================================================
-   WHEEL LABELS
-===================================================== */
-
-.wheel-label {
-
+.decor {
     position: absolute;
 
-    width: 105px;
+    font-size: 25px;
 
-    text-align: center;
+    opacity: 0.65;
 
-    left: 50%;
-    top: 50%;
+    z-index: 1;
 
-    transform-origin: center;
-
-    margin-left: -52px;
-    margin-top: -15px;
-
-    color: #39728d;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    line-height: 1.3;
-
-    z-index: 4;
+    pointer-events: none;
 }
 
+.decor-1 {
+    top: 12%;
+    left: 8%;
 
-/* =====================================================
-   SCENE 6 : MISSION
-===================================================== */
-
-.mission-heart {
-
-    font-size: 65px;
-
-    animation:
-        heartBeat 1.4s infinite;
+    transform: rotate(-15deg);
 }
 
-@keyframes heartBeat {
+.decor-2 {
+    top: 18%;
+    right: 8%;
 
+    transform: rotate(15deg);
+}
+
+.decor-3 {
+    bottom: 15%;
+    left: 10%;
+
+    transform: rotate(10deg);
+}
+
+.decor-4 {
+    bottom: 10%;
+    right: 10%;
+
+    transform: rotate(-10deg);
+}
+
+/* ================================
+   Animations
+================================ */
+
+@keyframes gentleFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes heartbeat {
     0%,
     100% {
         transform: scale(1);
     }
 
-    15% {
-        transform: scale(1.15);
-    }
-
-    30% {
-        transform: scale(1);
-    }
-
-    45% {
-        transform: scale(1.1);
+    50% {
+        transform: scale(1.2);
     }
 }
 
-.mission-message {
+/* ================================
+   Mobile
+================================ */
 
-    background: #f0faff;
+@media (max-width: 480px) {
 
-    border-radius: 22px;
-
-    padding: 22px;
-
-    margin: 20px 0;
-
-    color: #4d7387;
-
-    line-height: 1.9;
-}
-
-.mission-box {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-    text-align: left;
-
-    background: white;
-
-    border:
-        1px solid #d5edf7;
-
-    border-radius: 20px;
-
-    padding: 18px;
-
-    margin-bottom: 20px;
-}
-
-.mission-icon {
-
-    font-size: 45px;
-
-    flex-shrink: 0;
-}
-
-.mission-box strong {
-
-    color: #347796;
-
-    font-size: 18px;
-}
-
-.mission-box p {
-
-    font-size: 13px;
-
-    margin-top: 3px;
-
-    line-height: 1.6;
-}
-
-
-/* =====================================================
-   SCENE 7
-===================================================== */
-
-.end-card {
-
-    padding-top: 40px;
-
-    min-height: 600px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-}
-
-.end-flower {
-
-    font-size: 75px;
-
-    animation:
-        flowerFloat 3s infinite;
-}
-
-.heart-big {
-
-    font-size: 75px;
-
-    animation:
-        heartBeat 1.5s infinite;
-}
-
-.final-message {
-
-    margin-top: 10px;
-
-    max-width: 520px;
-}
-
-.final-message p {
-
-    margin-bottom: 15px;
-}
-
-.final-highlight {
-
-    color: #347b9b;
-
-    font-size: 19px;
-
-    font-weight: 700;
-}
-
-.final-love {
-
-    color: #347b9b;
-
-    font-size: 25px;
-
-    font-weight: 800;
-}
-
-.final-flower-row {
-
-    font-size: 23px;
-
-    margin: 10px 0 20px;
-
-    letter-spacing: 5px;
-}
-
-
-/* =====================================================
-   FLOATING EFFECTS
-===================================================== */
-
-.floating-heart,
-.floating-flower,
-.floating-sparkle {
-
-    position: fixed;
-
-    bottom: -50px;
-
-    pointer-events: none;
-
-    z-index: 100;
-
-    animation:
-        floatUp 4s ease-out forwards;
-}
-
-@keyframes floatUp {
-
-    0% {
-
-        transform:
-            translateY(0)
-            scale(.6)
-            rotate(0);
-
-        opacity: 0;
+    .container {
+        padding: 20px 15px;
     }
 
-    15% {
-        opacity: 1;
-    }
-
-    100% {
-
-        transform:
-            translateY(-110vh)
-            scale(1.2)
-            rotate(25deg);
-
-        opacity: 0;
-    }
-}
-
-
-/* =====================================================
-   POPUP
-===================================================== */
-
-.popup {
-
-    position: fixed;
-
-    inset: 0;
-
-    background:
-        rgba(40,91,116,.28);
-
-    backdrop-filter: blur(5px);
-
-    display: none;
-
-    align-items: center;
-    justify-content: center;
-
-    z-index: 500;
-
-    padding: 20px;
-}
-
-.popup.show {
-
-    display: flex;
-
-    animation:
-        popupFade .3s ease;
-}
-
-@keyframes popupFade {
-
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.popup-card {
-
-    width: min(90vw, 390px);
-
-    background: white;
-
-    border-radius: 28px;
-
-    padding: 30px 25px;
-
-    text-align: center;
-
-    box-shadow:
-        0 25px 70px rgba(30,90,120,.25);
-
-    animation:
-        popupIn .35s ease;
-}
-
-@keyframes popupIn {
-
-    from {
-        transform: scale(.8) translateY(20px);
-    }
-
-    to {
-        transform: scale(1) translateY(0);
-    }
-}
-
-.popup-icon {
-
-    font-size: 60px;
-
-    margin-bottom: 5px;
-}
-
-.popup-card p {
-
-    margin-bottom: 20px;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 600px) {
-
-    .scene {
-
-        padding:
-            18px 12px;
-    }
-
-    .start-card,
-    .scene-card,
-    .bloom-card,
-    .letter-card,
-    .gallery-card,
-    .wheel-card,
-    .mission-card,
-    .end-card {
-
-        padding:
-            32px 18px;
+    .surprise-card {
+        padding: 38px 22px 32px;
 
         border-radius: 26px;
     }
 
-    p {
-
-        font-size: 15px;
+    .flower {
+        font-size: 50px;
     }
 
-    .plant-area {
-
-        transform: scale(.9);
-
-        margin:
-            5px auto;
+    .title {
+        font-size: 26px;
     }
 
-    .wheel-wrapper {
-
-        transform:
-            scale(.88);
-
-        margin:
-            -5px auto -15px;
-    }
-
-    .letter-card {
-
-        max-height: 92vh;
-    }
-
-    .photo-frame {
-
-        width: 100%;
-    }
-
-    .gallery-controls {
-
-        gap: 7px;
-    }
-
-    .secondary-btn {
-
-        padding:
-            10px 16px;
-    }
-
-    .mission-box {
-
-        align-items: flex-start;
-    }
-
-    .end-card {
-
-        min-height: 580px;
-    }
-}
-
-
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
-
-@media (max-width: 380px) {
-
-    h1 {
-        font-size: 28px;
-    }
-
-    h2 {
+    .mom-name {
         font-size: 24px;
     }
 
-    .wheel-wrapper {
-        transform: scale(.78);
-        margin-top: -20px;
-        margin-bottom: -35px;
+    .subtitle,
+    .message {
+        font-size: 15px;
     }
 
-    .primary-btn {
-        padding:
-            13px 21px;
+    .open-btn {
+        width: 100%;
+
+        padding: 14px 20px;
     }
-}
 
-
-/* =====================================================
-   ACCESSIBILITY
-===================================================== */
-
-button:focus-visible {
-
-    outline:
-        3px solid #8ccde7;
-
-    outline-offset: 3px;
-}
-
-img {
-
-    user-select: none;
-    -webkit-user-drag: none;
+    .decor {
+        font-size: 20px;
+    }
 }
