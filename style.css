@@ -1,0 +1,2054 @@
+* {
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: hidden;
+
+    font-family:
+        "Segoe UI",
+        "Noto Sans Thai",
+        sans-serif;
+
+}
+
+
+body {
+
+    background:
+        linear-gradient(
+            180deg,
+            #bde7ff,
+            #dff5ff
+        );
+
+    color: #527083;
+
+}
+
+
+/* =====================================================
+   SKY
+===================================================== */
+
+.sky {
+
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+}
+
+
+.cloud {
+
+    position: absolute;
+
+    font-size: 65px;
+
+    opacity: .65;
+
+    animation:
+        cloudMove
+        35s linear infinite;
+
+}
+
+
+.cloud1 {
+
+    top: 10%;
+
+    left: -100px;
+
+}
+
+
+.cloud2 {
+
+    top: 25%;
+
+    left: -200px;
+
+    animation-duration: 45s;
+
+    animation-delay: 5s;
+
+}
+
+
+.cloud3 {
+
+    top: 55%;
+
+    left: -150px;
+
+    animation-duration: 50s;
+
+    animation-delay: 10s;
+
+}
+
+
+@keyframes cloudMove {
+
+    from {
+
+        transform:
+            translateX(-100px);
+
+    }
+
+    to {
+
+        transform:
+            translateX(
+                calc(100vw + 300px)
+            );
+
+    }
+
+}
+
+
+/* =====================================================
+   MUSIC
+===================================================== */
+
+.music-btn {
+
+    position: fixed;
+
+    top: 18px;
+
+    right: 18px;
+
+    width: 45px;
+
+    height: 45px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(
+        255,
+        255,
+        255,
+        .75
+    );
+
+    box-shadow:
+        0 8px 20px
+        rgba(
+            70,
+            130,
+            160,
+            .15
+        );
+
+    font-size: 20px;
+
+    z-index: 9999;
+
+}
+
+
+/* =====================================================
+   GAME
+===================================================== */
+
+#game {
+
+    width: 100%;
+
+    height: 100%;
+
+}
+
+
+/* =====================================================
+   SCENE
+===================================================== */
+
+.scene {
+
+    display: none;
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    padding:
+        70px
+        20px
+        30px;
+
+    text-align: center;
+
+    overflow: hidden;
+
+}
+
+
+.scene.active {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+.scene.enter {
+
+    animation:
+        sceneEnter
+        .9s
+        cubic-bezier(
+            .22,
+            .61,
+            .36,
+            1
+        );
+
+}
+
+
+@keyframes sceneEnter {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(.92)
+            translateY(35px);
+
+    }
+
+    70% {
+
+        transform:
+            scale(1.02)
+            translateY(-5px);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   FLASH
+===================================================== */
+
+.scene-flash {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5000;
+
+    background: white;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+}
+
+
+.scene-flash.play {
+
+    animation:
+        flash
+        .7s
+        ease;
+
+}
+
+
+@keyframes flash {
+
+    0% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: .8;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
+
+
+/* =====================================================
+   TITLES
+===================================================== */
+
+.small-title {
+
+    letter-spacing: 2px;
+
+    font-size: 13px;
+
+    color: #7597a8;
+
+    margin-bottom: 20px;
+
+}
+
+
+.scene-title span {
+
+    display: inline-block;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .65
+        );
+
+    padding:
+        7px
+        15px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+
+}
+
+
+.scene-title h2 {
+
+    margin:
+        12px
+        0
+        8px;
+
+    color: #527083;
+
+}
+
+
+.scene-title p {
+
+    margin:
+        0
+        0
+        20px;
+
+    color: #7693a2;
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+.start-content {
+
+    animation:
+        startAppear
+        1.2s
+        ease;
+
+}
+
+
+@keyframes startAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(50px)
+            scale(.8);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+.start-flower {
+
+    font-size: 110px;
+
+    animation:
+        flowerFloat
+        3s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes flowerFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(-4deg);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-12px)
+            rotate(4deg);
+
+    }
+
+}
+
+
+.start-content h1 {
+
+    font-size:
+        clamp(
+            32px,
+            8vw,
+            58px
+        );
+
+    line-height: 1.2;
+
+    color: #527083;
+
+}
+
+
+.start-content p {
+
+    color: #7693a2;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.main-btn {
+
+    border: none;
+
+    border-radius: 999px;
+
+    padding:
+        14px
+        28px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .85
+        );
+
+    color: #527083;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 10px 30px
+        rgba(
+            70,
+            130,
+            160,
+            .18
+        );
+
+    cursor: pointer;
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+
+}
+
+
+.main-btn:hover {
+
+    transform:
+        translateY(-3px)
+        scale(1.03);
+
+}
+
+
+.main-btn:active {
+
+    transform:
+        scale(.95);
+
+}
+
+
+.hidden {
+
+    display: none !important;
+
+}
+
+
+/* =====================================================
+   TREE
+===================================================== */
+
+.tree-game {
+
+    position: relative;
+
+    width: 300px;
+
+    height: 300px;
+
+}
+
+
+.jasmine {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 45px;
+
+    width: 180px;
+
+    height: 230px;
+
+    transform:
+        translateX(-50%);
+
+    transition:
+        all 1s
+        cubic-bezier(
+            .17,
+            .67,
+            .32,
+            1.4
+        );
+
+}
+
+
+.stem {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 0;
+
+    width: 9px;
+
+    height: 120px;
+
+    border-radius: 20px;
+
+    background: #719b68;
+
+    transform:
+        translateX(-50%)
+        scaleY(0);
+
+    transform-origin:
+        bottom;
+
+    transition:
+        transform 1s;
+
+}
+
+
+.stage1 .stem {
+
+    transform:
+        translateX(-50%)
+        scaleY(.35);
+
+}
+
+
+.stage2 .stem {
+
+    transform:
+        translateX(-50%)
+        scaleY(.55);
+
+}
+
+
+.stage3 .stem {
+
+    transform:
+        translateX(-50%)
+        scaleY(.75);
+
+}
+
+
+.stage4 .stem,
+.stage5 .stem {
+
+    transform:
+        translateX(-50%)
+        scaleY(1);
+
+}
+
+
+.leaf {
+
+    position: absolute;
+
+    font-size: 50px;
+
+    opacity: 0;
+
+    transition:
+        all .7s;
+
+}
+
+
+.leaf1 {
+
+    left: 15px;
+
+    top: 110px;
+
+}
+
+
+.leaf2 {
+
+    right: 10px;
+
+    top: 85px;
+
+}
+
+
+.stage2 .leaf1 {
+
+    opacity: 1;
+
+    transform:
+        rotate(-20deg);
+
+}
+
+
+.stage3 .leaf2 {
+
+    opacity: 1;
+
+    transform:
+        rotate(20deg);
+
+}
+
+
+.stage4 .leaf1,
+.stage4 .leaf2,
+.stage5 .leaf1,
+.stage5 .leaf2 {
+
+    opacity: 1;
+
+}
+
+
+.flowers {
+
+    position: absolute;
+
+    inset: 0;
+
+}
+
+
+.jasmine-flower {
+
+    position: absolute;
+
+    font-size: 35px;
+
+    opacity: 0;
+
+    transform:
+        scale(0);
+
+}
+
+
+.jasmine-flower:nth-child(1) {
+
+    top: 50px;
+
+    left: 35px;
+
+}
+
+
+.jasmine-flower:nth-child(2) {
+
+    top: 35px;
+
+    right: 25px;
+
+}
+
+
+.jasmine-flower:nth-child(3) {
+
+    top: 85px;
+
+    left: 70px;
+
+}
+
+
+.jasmine-flower:nth-child(4) {
+
+    top: 115px;
+
+    right: 50px;
+
+}
+
+
+.jasmine-flower:nth-child(5) {
+
+    top: 20px;
+
+    left: 85px;
+
+}
+
+
+.jasmine-flower.bloom {
+
+    animation:
+        bloom
+        .8s
+        cubic-bezier(
+            .17,
+            .67,
+            .32,
+            1.4
+        )
+        forwards;
+
+}
+
+
+@keyframes bloom {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0)
+            rotate(-90deg);
+
+    }
+
+    70% {
+
+        transform:
+            scale(1.2)
+            rotate(10deg);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+
+    }
+
+}
+
+
+.jasmine.watered {
+
+    animation:
+        treeShake
+        .6s
+        ease;
+
+}
+
+
+@keyframes treeShake {
+
+    0%,
+    100% {
+
+        transform:
+            translateX(-50%)
+            rotate(0);
+
+    }
+
+    25% {
+
+        transform:
+            translateX(-50%)
+            rotate(-4deg);
+
+    }
+
+    75% {
+
+        transform:
+            translateX(-50%)
+            rotate(4deg);
+
+    }
+
+}
+
+
+.ground {
+
+    position: absolute;
+
+    bottom: 10px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    font-size: 30px;
+
+}
+
+
+.water-count {
+
+    margin-bottom: 15px;
+
+    font-weight: 600;
+
+    color: #648b9d;
+
+}
+
+
+/* =====================================================
+   WHEEL
+===================================================== */
+
+.wheel-area {
+
+    position: relative;
+
+    margin: 15px;
+
+}
+
+
+#wheel {
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 20px 50px
+        rgba(
+            70,
+            130,
+            160,
+            .2
+        );
+
+    background: white;
+
+}
+
+
+.pointer {
+
+    position: absolute;
+
+    top: -17px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 10;
+
+    font-size: 32px;
+
+}
+
+
+.wheel-area.spinning {
+
+    animation:
+        wheelShake
+        .12s
+        infinite;
+
+}
+
+
+@keyframes wheelShake {
+
+    50% {
+
+        transform:
+            translateX(2px);
+
+    }
+
+}
+
+
+.result-box {
+
+    margin-top: 20px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .8
+        );
+
+    padding:
+        15px
+        25px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(
+            70,
+            130,
+            160,
+            .15
+        );
+
+    animation:
+        popup
+        .7s
+        cubic-bezier(
+            .17,
+            .67,
+            .32,
+            1.4
+        );
+
+}
+
+
+@keyframes popup {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.5);
+
+    }
+
+    70% {
+
+        transform:
+            scale(1.1);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   HUG
+===================================================== */
+
+.hug-scene {
+
+    position: relative;
+
+    width: 300px;
+
+    height: 200px;
+
+    margin: 10px auto;
+
+}
+
+
+.person {
+
+    position: absolute;
+
+    bottom: 0;
+
+    font-size: 90px;
+
+}
+
+
+.person-mom {
+
+    left: 0;
+
+    animation:
+        momMove
+        1.4s
+        ease
+        forwards;
+
+}
+
+
+.person-child {
+
+    right: 0;
+
+    animation:
+        childMove
+        1.4s
+        ease
+        forwards;
+
+}
+
+
+@keyframes momMove {
+
+    from {
+
+        transform:
+            translateX(-80px);
+
+    }
+
+    to {
+
+        transform:
+            translateX(65px);
+
+    }
+
+}
+
+
+@keyframes childMove {
+
+    from {
+
+        transform:
+            translateX(80px);
+
+    }
+
+    to {
+
+        transform:
+            translateX(-65px);
+
+    }
+
+}
+
+
+.hug-heart {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 20px;
+
+    font-size: 55px;
+
+    transform:
+        translateX(-50%)
+        scale(0);
+
+    animation:
+        hugHeart
+        1s
+        1.2s
+        cubic-bezier(
+            .17,
+            .67,
+            .32,
+            1.4
+        )
+        forwards;
+
+}
+
+
+@keyframes hugHeart {
+
+    from {
+
+        transform:
+            translateX(-50%)
+            scale(0);
+
+    }
+
+    70% {
+
+        transform:
+            translateX(-50%)
+            scale(1.4);
+
+    }
+
+    to {
+
+        transform:
+            translateX(-50%)
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   KISS
+===================================================== */
+
+.mom-face {
+
+    position: relative;
+
+    width: 250px;
+
+    height: 230px;
+
+}
+
+
+.face {
+
+    font-size: 150px;
+
+    animation:
+        faceEnter
+        1s
+        ease;
+
+}
+
+
+@keyframes faceEnter {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.5)
+            translateY(50px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+.kiss-mark {
+
+    position: absolute;
+
+    opacity: 0;
+
+    font-size: 38px;
+
+}
+
+
+#kissLeft {
+
+    left: 45px;
+
+    top: 95px;
+
+}
+
+
+#kissRight {
+
+    right: 45px;
+
+    top: 95px;
+
+}
+
+
+.kiss-mark.show {
+
+    animation:
+        kissPop
+        .7s
+        cubic-bezier(
+            .17,
+            .67,
+            .32,
+            1.4
+        )
+        forwards;
+
+}
+
+
+@keyframes kissPop {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0)
+            rotate(-30deg);
+
+    }
+
+    70% {
+
+        transform:
+            scale(1.3)
+            rotate(10deg);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   LOVE
+===================================================== */
+
+.big-heart {
+
+    font-size: 100px;
+
+    animation:
+        heartBeat
+        1s
+        infinite;
+
+}
+
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.15);
+
+    }
+
+}
+
+
+.love-content h1 {
+
+    font-size: 42px;
+
+}
+
+
+.typing {
+
+    min-height: 50px;
+
+    max-width: 400px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =====================================================
+   FOOD
+===================================================== */
+
+.food-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap: 12px;
+
+    max-width: 400px;
+
+}
+
+
+.food-item {
+
+    border: none;
+
+    border-radius: 20px;
+
+    padding:
+        20px
+        10px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .8
+        );
+
+    font-size: 35px;
+
+    color: #527083;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px
+        rgba(
+            70,
+            130,
+            160,
+            .12
+        );
+
+    animation:
+        foodIn
+        .6s
+        ease
+        both;
+
+}
+
+
+.food-item span {
+
+    display: block;
+
+    font-size: 13px;
+
+    margin-top: 5px;
+
+}
+
+
+.food-item:hover {
+
+    transform:
+        translateY(-5px)
+        scale(1.04);
+
+}
+
+
+@keyframes foodIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(40px)
+            scale(.7);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   TRAVEL
+===================================================== */
+
+.travel-card {
+
+    width: 300px;
+
+    padding: 25px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .75
+        );
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(
+            70,
+            130,
+            160,
+            .15
+        );
+
+    animation:
+        travelIn
+        1s
+        cubic-bezier(
+            .17,
+            .67,
+            .32,
+            1.4
+        );
+
+}
+
+
+.travel-icon {
+
+    font-size: 80px;
+
+}
+
+
+@keyframes travelIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(80px)
+            rotate(-5deg);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            rotate(0);
+
+    }
+
+}
+
+
+.travel-card.travel {
+
+    animation:
+        carTravel
+        1.5s
+        ease
+        forwards;
+
+}
+
+
+@keyframes carTravel {
+
+    to {
+
+        transform:
+            translateX(120vw);
+
+    }
+
+}
+
+
+/* =====================================================
+   GALLERY
+===================================================== */
+
+.gallery {
+
+    position: relative;
+
+    width:
+        min(
+            330px,
+            82vw
+        );
+
+    aspect-ratio:
+        9 / 12;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    background: white;
+
+    box-shadow:
+        0 20px 50px
+        rgba(
+            70,
+            130,
+            160,
+            .2
+        );
+
+}
+
+
+.gallery-img {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    opacity: 0;
+
+    transform:
+        scale(1);
+
+    transition:
+        opacity .5s;
+
+}
+
+
+.gallery-img.active {
+
+    opacity: 1;
+
+    animation:
+        photoZoom
+        4s
+        ease
+        forwards;
+
+}
+
+
+@keyframes photoZoom {
+
+    from {
+
+        transform:
+            scale(1);
+
+    }
+
+    to {
+
+        transform:
+            scale(1.08);
+
+    }
+
+}
+
+
+.gallery-caption {
+
+    margin-top: 12px;
+
+}
+
+
+.gallery-counter {
+
+    font-size: 12px;
+
+    margin: 5px;
+
+    color: #8ba5b3;
+
+}
+
+
+/* =====================================================
+   GIFT
+===================================================== */
+
+.gift-box {
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 150px;
+
+    cursor: pointer;
+
+    animation:
+        giftIdle
+        2s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes giftIdle {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-10px);
+
+    }
+
+}
+
+
+.gift-box.holding {
+
+    animation:
+        giftShake
+        .12s
+        infinite;
+
+}
+
+
+@keyframes giftShake {
+
+    50% {
+
+        transform:
+            rotate(5deg)
+            scale(1.08);
+
+    }
+
+}
+
+
+.gift-box.open {
+
+    animation:
+        giftOpen
+        .8s
+        ease
+        forwards;
+
+}
+
+
+@keyframes giftOpen {
+
+    50% {
+
+        transform:
+            scale(1.3)
+            rotate(5deg);
+
+    }
+
+    100% {
+
+        transform:
+            scale(1.1);
+
+    }
+
+}
+
+
+.gift-progress {
+
+    width: 220px;
+
+    height: 8px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .6
+        );
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+}
+
+
+.gift-progress-bar {
+
+    height: 100%;
+
+    width: 0%;
+
+    background:
+        #ffffff;
+
+    transition:
+        width .1s linear;
+
+}
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+.final-content {
+
+    max-width: 500px;
+
+}
+
+
+.final-flower {
+
+    font-size: 100px;
+
+    animation:
+        finalFlower
+        1.5s
+        cubic-bezier(
+            .17,
+            .67,
+            .32,
+            1.4
+        );
+
+}
+
+
+.final-flower.second {
+
+    display: inline-block;
+
+    font-size: 45px;
+
+    animation-delay:
+        .3s;
+
+}
+
+
+@keyframes finalFlower {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0)
+            rotate(-180deg);
+
+    }
+
+    70% {
+
+        transform:
+            scale(1.2)
+            rotate(15deg);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+
+    }
+
+}
+
+
+.final-title {
+
+    font-size:
+        clamp(
+            30px,
+            8vw,
+            50px
+        );
+
+    animation:
+        finalTitle
+        1s
+        .4s
+        ease
+        both;
+
+}
+
+
+.final-text {
+
+    animation:
+        finalText
+        1s
+        .8s
+        ease
+        both;
+
+}
+
+
+.delay1 {
+
+    animation-delay:
+        1.2s;
+
+}
+
+
+.delay2 {
+
+    animation-delay:
+        1.6s;
+
+}
+
+
+.final-love {
+
+    margin-top: 25px;
+
+    animation:
+        finalLove
+        1s
+        2s
+        cubic-bezier(
+            .17,
+            .67,
+            .32,
+            1.4
+        )
+        both;
+
+}
+
+
+@keyframes finalLove {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.5);
+
+    }
+
+    70% {
+
+        transform:
+            scale(1.2);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+.final-sign {
+
+    margin-top: 20px;
+
+    color: #7895a5;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media
+(max-width: 600px) {
+
+    .scene {
+
+        padding-top:
+            60px;
+
+    }
+
+
+    .food-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+
+    }
+
+
+    #wheel {
+
+        width: 290px;
+
+        height: 290px;
+
+    }
+
+
+    .start-flower {
+
+        font-size: 85px;
+
+    }
+
+
+    .start-content h1 {
+
+        font-size: 34px;
+
+    }
+
+}
