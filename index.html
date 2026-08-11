@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        🌼 เรื่องเล็ก ๆ ของแม่
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="sky">
+
+    <div class="cloud cloud1">☁️</div>
+    <div class="cloud cloud2">☁️</div>
+    <div class="cloud cloud3">☁️</div>
+
+</div>
+
+
+<!-- MUSIC -->
+
+<audio
+    id="bgMusic"
+    loop
+>
+
+    <source
+        src="assets/music.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<!-- MUSIC BUTTON -->
+
+<button
+    id="musicBtn"
+    class="music-btn"
+>
+    🎵
+</button>
+
+
+<!-- FLASH -->
+
+<div
+    id="sceneFlash"
+    class="scene-flash"
+></div>
+
+
+<!-- =====================================================
+     GAME
+===================================================== -->
+
+<main id="game">
+
+
+<!-- =====================================================
+     SCENE 1 : START
+===================================================== -->
+
+<section
+    id="scene-start"
+    class="scene active"
+>
+
+    <div class="start-content">
+
+        <div class="small-title">
+            A Little Surprise For Mom
+        </div>
+
+
+        <div class="start-flower">
+            🌼
+        </div>
+
+
+        <h1>
+            เรื่องเล็ก ๆ
+            <br>
+            ที่อยากทำให้แม่
+        </h1>
+
+
+        <p>
+            วันนี้ลูกมีภารกิจพิเศษให้แม่ 💙
+        </p>
+
+
+        <button
+            id="startBtn"
+            class="main-btn"
+        >
+            🌷 เริ่มภารกิจ
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SCENE 2 : JASMINE TREE
+===================================================== -->
+
+<section
+    id="scene-tree"
+    class="scene"
+>
+
+    <div class="scene-title">
+
+        <span>
+            🌱 ภารกิจที่ 1
+        </span>
+
+        <h2>
+            ปลูกต้นมะลิให้แม่
+        </h2>
+
+        <p id="treeMessage">
+            เมล็ดเล็ก ๆ กำลังรอความรักจากแม่ 🤍
+        </p>
+
+    </div>
+
+
+    <div class="tree-game">
+
+        <div
+            id="jasmine"
+            class="jasmine stage0"
+        >
+
+            <div class="stem"></div>
+
+            <div class="leaf leaf1">
+                🌿
+            </div>
+
+            <div class="leaf leaf2">
+                🌿
+            </div>
+
+
+            <div class="flowers">
+
+                <span class="jasmine-flower">
+                    🌼
+                </span>
+
+                <span class="jasmine-flower">
+                    🌼
+                </span>
+
+                <span class="jasmine-flower">
+                    🌼
+                </span>
+
+                <span class="jasmine-flower">
+                    🌼
+                </span>
+
+                <span class="jasmine-flower">
+                    🌼
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="ground">
+
+            🌱🌱🌱🌱🌱
+
+        </div>
+
+    </div>
+
+
+    <div class="water-area">
+
+        <div
+            id="waterCount"
+            class="water-count"
+        >
+            รดน้ำ 0 / 5 ครั้ง
+        </div>
+
+
+        <button
+            id="waterBtn"
+            class="water-btn"
+        >
+            💧 รดน้ำต้นมะลิ
+        </button>
+
+
+        <button
+            id="treeNextBtn"
+            class="main-btn hidden"
+        >
+            🌼 มะลิบานแล้ว
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SCENE 3 : WHEEL
+===================================================== -->
+
+<section
+    id="scene-wheel"
+    class="scene"
+>
+
+    <div class="scene-title">
+
+        <span>
+            🎡 ภารกิจที่ 2
+        </span>
+
+        <h2>
+            วงล้อของแม่
+        </h2>
+
+        <p>
+            วันนี้แม่จะได้สิทธิ์เลือก 1 อย่าง 💙
+        </p>
+
+    </div>
+
+
+    <div class="wheel-area">
+
+        <div class="pointer">
+            🔻
+        </div>
+
+
+        <canvas
+            id="wheel"
+            width="320"
+            height="320"
+        ></canvas>
+
+    </div>
+
+
+    <button
+        id="spinBtn"
+        class="main-btn"
+    >
+        🎡 หมุนเลย!
+    </button>
+
+
+    <div
+        id="wheelResult"
+        class="result-box hidden"
+    >
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SCENE 4 : HUG
+===================================================== -->
+
+<section
+    id="scene-hug"
+    class="scene"
+>
+
+    <div class="scene-title">
+
+        <span>
+            🤗 ภารกิจที่ 3
+        </span>
+
+        <h2>
+            กอดแม่ 1 ครั้ง
+        </h2>
+
+        <p>
+            กอดแน่น ๆ ให้รู้ว่าลูกรักแม่มากแค่ไหน
+        </p>
+
+    </div>
+
+
+    <div class="hug-scene">
+
+        <div class="person person-mom">
+            👩
+        </div>
+
+
+        <div
+            id="hugHeart"
+            class="hug-heart"
+        >
+            ❤️
+        </div>
+
+
+        <div class="person person-child">
+            🧒
+        </div>
+
+    </div>
+
+
+    <button
+        id="hugBtn"
+        class="main-btn"
+    >
+        🤗 กอดแม่แล้ว!
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     SCENE 5 : KISS
+===================================================== -->
+
+<section
+    id="scene-kiss"
+    class="scene"
+>
+
+    <div class="scene-title">
+
+        <span>
+            😘 ภารกิจที่ 4
+        </span>
+
+        <h2>
+            จุ๊บแม่ 2 แก้ม
+        </h2>
+
+        <p>
+            ซ้ายหนึ่ง ขวาหนึ่ง 💋
+        </p>
+
+    </div>
+
+
+    <div class="mom-face">
+
+        <div class="face">
+            👩
+        </div>
+
+
+        <div
+            id="kissLeft"
+            class="kiss-mark"
+        >
+            💋
+        </div>
+
+
+        <div
+            id="kissRight"
+            class="kiss-mark"
+        >
+            💋
+        </div>
+
+    </div>
+
+
+    <button
+        id="kissBtn"
+        class="main-btn"
+    >
+        😘 จุ๊บแม่!
+    </button>
+
+
+    <div
+        id="kissText"
+        class="mission-complete"
+    ></div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SCENE 6 : LOVE
+===================================================== -->
+
+<section
+    id="scene-love"
+    class="scene"
+>
+
+    <div class="love-content">
+
+        <div class="big-heart">
+            ❤️
+        </div>
+
+
+        <h2>
+            ภารกิจที่ 5
+        </h2>
+
+
+        <h1>
+            บอกรักแม่
+        </h1>
+
+
+        <p
+            id="loveTyping"
+            class="typing"
+        ></p>
+
+
+        <button
+            id="loveBtn"
+            class="main-btn"
+        >
+            ❤️ บอกรักแม่
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SCENE 7 : FOOD
+===================================================== -->
+
+<section
+    id="scene-food"
+    class="scene"
+>
+
+    <div class="scene-title">
+
+        <span>
+            🍚 ภารกิจที่ 6
+        </span>
+
+        <h2>
+            วันนี้แม่อยากกินอะไร?
+        </h2>
+
+        <p>
+            เลือกได้ตามใจแม่เลย 💙
+        </p>
+
+    </div>
+
+
+    <div class="food-grid">
+
+        <button class="food-item">
+            🍲
+            <span>ชาบู</span>
+        </button>
+
+
+        <button class="food-item">
+            🥩
+            <span>ปิ้งย่าง</span>
+        </button>
+
+
+        <button class="food-item">
+            🍜
+            <span>ก๋วยเตี๋ยว</span>
+        </button>
+
+
+        <button class="food-item">
+            🍣
+            <span>อาหารญี่ปุ่น</span>
+        </button>
+
+
+        <button class="food-item">
+            🍕
+            <span>พิซซ่า</span>
+        </button>
+
+
+        <button class="food-item">
+            ❤️
+            <span>แม่เลือกเอง</span>
+        </button>
+
+    </div>
+
+
+    <div
+        id="foodResult"
+        class="result-box"
+    ></div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SCENE 8 : TRAVEL
+===================================================== -->
+
+<section
+    id="scene-travel"
+    class="scene"
+>
+
+    <div class="scene-title">
+
+        <span>
+            🚗 ภารกิจที่ 7
+        </span>
+
+        <h2>
+            ตามใจแม่
+        </h2>
+
+        <p>
+            แม่อยากไปไหน ลูกพาไป 1 ที่ ❤️
+        </p>
+
+    </div>
+
+
+    <div
+        id="travelCard"
+        class="travel-card"
+    >
+
+        <div class="travel-icon">
+            🚗
+        </div>
+
+
+        <h2>
+            One Day With Mom
+        </h2>
+
+
+        <p>
+            วันนี้แม่เลือกสถานที่ได้เลย
+        </p>
+
+
+        <div class="road">
+            ───────────────
+        </div>
+
+    </div>
+
+
+    <button
+        id="travelBtn"
+        class="main-btn"
+    >
+        🚗 พาแม่ไปเที่ยว
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     SCENE 9 : GALLERY
+===================================================== -->
+
+<section
+    id="scene-gallery"
+    class="scene"
+>
+
+    <div class="scene-title">
+
+        <span>
+            📸 Memories
+        </span>
+
+        <h2>
+            ความทรงจำของเรา
+        </h2>
+
+    </div>
+
+
+    <div class="gallery">
+
+        <img
+            src="assets/photo1.jpg"
+            class="gallery-img active"
+            alt="ความทรงจำกับแม่"
+        >
+
+
+        <img
+            src="assets/photo2.jpg"
+            class="gallery-img"
+            alt="ความทรงจำกับแม่"
+        >
+
+
+        <img
+            src="assets/photo3.jpg"
+            class="gallery-img"
+            alt="ความทรงจำกับแม่"
+        >
+
+
+        <img
+            src="assets/photo4.jpg"
+            class="gallery-img"
+            alt="ความทรงจำกับแม่"
+        >
+
+
+        <img
+            src="assets/photo5.jpg"
+            class="gallery-img"
+            alt="ความทรงจำกับแม่"
+        >
+
+    </div>
+
+
+    <div
+        id="galleryCaption"
+        class="gallery-caption"
+    >
+        รูปแรกของเรา 🤍
+    </div>
+
+
+    <div
+        id="galleryCounter"
+        class="gallery-counter"
+    >
+        1 / 5
+    </div>
+
+
+    <button
+        id="galleryNext"
+        class="main-btn"
+    >
+        📸 รูปต่อไป
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     SCENE 10 : GIFT
+===================================================== -->
+
+<section
+    id="scene-gift"
+    class="scene"
+>
+
+    <div class="scene-title">
+
+        <span>
+            🎁 Special Gift
+        </span>
+
+        <h2>
+            ของขวัญชิ้นสุดท้าย
+        </h2>
+
+        <p id="holdText">
+            💗 กดค้างที่กล่อง 3 วินาที
+        </p>
+
+    </div>
+
+
+    <button
+        id="giftBox"
+        class="gift-box"
+    >
+        🎁
+    </button>
+
+
+    <div
+        id="giftProgress"
+        class="gift-progress"
+    >
+
+        <div
+            id="giftProgressBar"
+            class="gift-progress-bar"
+        ></div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SCENE 11 : FINAL
+===================================================== -->
+
+<section
+    id="scene-final"
+    class="scene"
+>
+
+    <div class="final-content">
+
+        <div class="final-flower">
+            🌼
+        </div>
+
+
+        <div class="final-flower second">
+            🌼
+        </div>
+
+
+        <h1 class="final-title">
+            สุขสันต์วันแม่นะ
+        </h1>
+
+
+        <p class="final-text">
+            แม่... 🤍
+        </p>
+
+
+        <p class="final-text delay1">
+            ขอบคุณสำหรับทุกอย่าง
+        </p>
+
+
+        <p class="final-text delay2">
+            ขอบคุณที่รักและดูแลลูกเสมอ
+        </p>
+
+
+        <h2 class="final-love">
+            ❤️ รักแม่ที่สุดนะ ❤️
+        </h2>
+
+
+        <div class="final-sign">
+            จากลูกของแม่ 🌼
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<script
+    src="script.js"
+></script>
+
+</body>
+
+</html>
