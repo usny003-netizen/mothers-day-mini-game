@@ -1,315 +1,356 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
     <meta charset="UTF-8">
 
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+          content="width=device-width, initial-scale=1.0">
 
-    <title>🌼 ของขวัญวันแม่จากหนู</title>
+    <meta name="theme-color" content="#dff3ff">
 
-    <link rel="stylesheet" href="./style.css">
+    <title>ของขวัญเล็ก ๆ จากลูกถึงแม่ 💙</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =========================
-         BACKGROUND
-    ========================== -->
-
-    <div class="sky">
-
-        <div class="cloud cloud1">☁️</div>
-        <div class="cloud cloud2">☁️</div>
-        <div class="cloud cloud3">☁️</div>
-
-        <div class="float flower-f1">🌼</div>
-        <div class="float flower-f2">🌼</div>
-
-        <div class="float heart-h1">💗</div>
-        <div class="float heart-h2">💕</div>
-
-    </div>
-
-
-    <!-- =========================
+    <!-- =========================================
          MUSIC
-    ========================== -->
+    ========================================== -->
 
     <audio id="bgMusic" loop preload="auto">
-        <source src="./music.mp3" type="audio/mpeg">
+        <source src="music.mp3" type="audio/mpeg">
     </audio>
 
-    <button
-        id="musicBtn"
-        class="music-btn"
-        type="button">
-        🎵
-    </button>
+
+    <!-- =========================================
+         BACKGROUND DECORATION
+    ========================================== -->
+
+    <div class="sky-decor">
+        <span>☁️</span>
+        <span>☁️</span>
+        <span>☁️</span>
+    </div>
+
+    <div id="floatingContainer"></div>
 
 
-    <!-- =========================
-         GAME
-    ========================== -->
+    <!-- =========================================
+         MAIN APP
+    ========================================== -->
 
-    <main id="game">
-
-
-        <!-- ==================================
-             SCENE 1
-             ต้นมะลิ
-        =================================== -->
-
-        <section
-            id="scene1"
-            class="scene active">
-
-            <div class="card">
-
-                <div class="mini-title">
-                    🌼 MOTHER'S DAY 🌼
-                </div>
-
-                <h1>
-                    ของขวัญเล็ก ๆ<br>
-                    จากหัวใจของหนู 💕
-                </h1>
-
-                <p class="intro">
-                    ก่อนจะไปเจอของขวัญของแม่<br>
-                    เรามาปลูกต้นมะลิกันก่อนนะ 🌱
-                </p>
+    <main id="app">
 
 
-                <!-- ต้นไม้ -->
+        <!-- =====================================
+             START SCREEN
+        ====================================== -->
 
-                <div class="tree-area">
+        <section class="scene active" id="scene-start">
 
-                    <div
-                        id="tree"
-                        class="tree stage0">
+            <div class="start-card">
 
-                        <div class="plant">
-
-                            <div class="branch branch-left"></div>
-                            <div class="branch branch-right"></div>
-
-                            <span class="leaf leaf1">🌿</span>
-                            <span class="leaf leaf2">🌿</span>
-                            <span class="leaf leaf3">🌿</span>
-
-                            <span class="jasmine jasmine1">🌼</span>
-                            <span class="jasmine jasmine2">🌼</span>
-                            <span class="jasmine jasmine3">🌼</span>
-
-                        </div>
-
-                        <div class="pot">
-                            🪴
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div
-                    id="waterText"
-                    class="water-text">
-
-                    ต้องรดน้ำอีก 3 ครั้ง 💧
-
-                </div>
-
-
-                <button
-                    id="waterBtn"
-                    class="main-btn water-btn"
-                    type="button">
-
-                    💧 รดน้ำต้นมะลิ
-
-                </button>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ==================================
-             SCENE 2
-             มะลิบาน
-        =================================== -->
-
-        <section
-            id="scene2"
-            class="scene">
-
-            <div class="card">
-
-                <div class="jasmine-big">
+                <div class="start-flower">
                     🌼
                 </div>
 
+                <p class="small-label">
+                    A little surprise for Mom
+                </p>
+
                 <h1>
-                    มะลิบานแล้ว! 🌼
+                    ของขวัญเล็ก ๆ
+                    <br>
+                    จากลูกถึงแม่ 💙
                 </h1>
 
-                <p class="message">
-                    เพราะความรักของหนู<br>
-                    ที่มีให้แม่ทุกวัน 💗
+                <p class="start-text">
+                    ลูกมีอะไรเล็ก ๆ อยากให้แม่ลองเล่นดู
+                    <br>
+                    ใช้เวลาไม่กี่นาทีเองนะ
                 </p>
 
-                <div class="garden">
-                    🌿 🌼 🌿 🌼 🌿
-                </div>
-
-                <button
-                    class="main-btn"
-                    data-next="3">
-
-                    💌 ไปหาแม่กัน
-
+                <button class="primary-btn" id="startBtn">
+                    💙 เปิดของขวัญ
                 </button>
+
+                <p class="music-hint">
+                    🎵 เปิดเสียงไว้ด้วยนะ
+                </p>
 
             </div>
 
         </section>
 
 
+        <!-- =====================================
+             SCENE 1 : WATER THE FLOWER
+        ====================================== -->
 
-        <!-- ==================================
-             SCENE 3
-             แม่
-        =================================== -->
+        <section class="scene" id="scene-1">
 
-        <section
-            id="scene3"
-            class="scene">
+            <div class="scene-card">
 
-            <div class="card">
-
-                <div class="mother">
-                    👩🏻
+                <div class="step-number">
+                    01 / 07
                 </div>
 
-                <div class="speech">
-
-                    แม่จ๋า... 💕
-
-                    <br><br>
-
-                    วันนี้หนูมีอะไร<br>
-                    อยากบอกแม่
-
-                </div>
-
-                <div class="love-text">
-
-                    ขอบคุณแม่ที่รัก<br>
-                    และดูแลหนูมาตลอดนะ ❤️
-
-                </div>
-
-                <button
-                    class="main-btn"
-                    data-next="4">
-
-                    📸 ดูความทรงจำของเรา
-
-                </button>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ==================================
-             SCENE 4
-             GALLERY
-        =================================== -->
-
-        <section
-            id="scene4"
-            class="scene">
-
-            <div class="card gallery-card">
+                <p class="small-label">
+                    ภารกิจแรกของเรา
+                </p>
 
                 <h2>
-                    📸 ความทรงจำของเรา
+                    🌱 ช่วยลูกปลูกความรักให้แม่
                 </h2>
 
-                <p>
-                    รูปธรรมดา ๆ
-                    แต่มีความหมายมากที่สุด 💕
+                <p class="scene-description" id="waterText">
+                    ต้นมะลิต้นนี้ยังเล็กอยู่เลย
+                    <br>
+                    แม่ช่วยลูกดูแลมันหน่อยนะ
                 </p>
 
 
-                <div class="gallery">
+                <!-- Plant -->
 
-                    <img
-                        id="galleryImage"
-                        src="./photo1.jpg"
-                        alt="ความทรงจำของแม่">
+                <div class="plant-area">
 
-                    <div
-                        id="imageError"
-                        class="image-error">
+                    <div class="sun">
+                        ☀️
+                    </div>
 
-                        🌼 รูปนี้กำลังเดินทางมาหาเรา 🌼
+                    <div class="plant">
+
+                        <div class="stem"></div>
+
+                        <div class="leaf leaf-left"></div>
+                        <div class="leaf leaf-right"></div>
+
+                        <div class="flower-bud">
+
+                            <div class="petal p1"></div>
+                            <div class="petal p2"></div>
+                            <div class="petal p3"></div>
+                            <div class="petal p4"></div>
+                            <div class="petal p5"></div>
+
+                            <div class="flower-center"></div>
+
+                        </div>
 
                     </div>
 
+                    <div class="soil"></div>
+
+                </div>
+
+
+                <!-- Water -->
+
+                <div class="water-progress">
+
+                    <span class="water-dot" id="waterDot1"></span>
+                    <span class="water-line"></span>
+                    <span class="water-dot" id="waterDot2"></span>
+                    <span class="water-line"></span>
+                    <span class="water-dot" id="waterDot3"></span>
+
                 </div>
 
 
-                <div
-                    id="dots"
-                    class="dots">
+                <button class="primary-btn water-btn" id="waterBtn">
+                    💧 รดน้ำครั้งที่ 1
+                </button>
 
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             SCENE 2 : FLOWER BLOOMS
+        ====================================== -->
+
+        <section class="scene" id="scene-2">
+
+            <div class="bloom-card">
+
+                <div class="big-flower" id="bigFlower">
+                    🌼
+                </div>
+
+                <div class="step-number">
+                    02 / 07
+                </div>
+
+                <p class="small-label">
+                    ดอกมะลิบานแล้ว
+                </p>
+
+                <h2>
+                    🌼 เพราะความรักของแม่...
+                </h2>
+
+                <p>
+                    เหมือนดอกมะลิที่ไม่ต้องพูดอะไรเยอะ
+                    <br>
+                    แต่ก็อบอุ่นอยู่ในใจลูกเสมอ
+                </p>
+
+                <div class="quote-box">
+                    “ขอบคุณที่รักลูก
+                    ในทุก ๆ วันนะคะ” 🤍
+                </div>
+
+                <button class="primary-btn next-btn" data-next="scene-3">
+                    ไปต่อกันนะ 💙
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             SCENE 3 : MESSAGE TO MOM
+        ====================================== -->
+
+        <section class="scene" id="scene-3">
+
+            <div class="letter-card">
+
+                <div class="step-number">
+                    03 / 07
+                </div>
+
+                <div class="letter-icon">
+                    💌
+                </div>
+
+                <p class="small-label">
+                    มีอะไรอยากบอกแม่...
+                </p>
+
+                <h2>
+                    ถึงแม่คนเก่งของลูก
+                </h2>
+
+                <div class="letter">
+
+                    <p>
+                        แม่รู้ไหม...
+                    </p>
+
+                    <p>
+                        ลูกอาจจะไม่ได้พูดคำว่า “รัก”
+                        ให้แม่ฟังทุกวัน
+                        บางครั้งลูกก็อาจจะดื้อบ้าง
+                        งอแงบ้าง
+                        หรือทำให้แม่เป็นห่วงอยู่เรื่อย ๆ 😝
+                    </p>
+
+                    <p>
+                        แต่มีเรื่องหนึ่งที่อยากให้แม่รู้ไว้เสมอว่า...
+                    </p>
+
+                    <p class="highlight">
+                        ลูกโชคดีมากนะ
+                        ที่เกิดมาเป็นลูกของแม่ 🤍
+                    </p>
+
+                    <p>
+                        ขอบคุณสำหรับทุกอย่าง
+                        ขอบคุณที่คอยดูแล
+                        ขอบคุณที่คอยเป็นห่วง
+                        และขอบคุณที่รักลูก
+                        แม้ในวันที่ลูกอาจจะไม่น่ารักเลยก็ตาม
+                    </p>
+
+                    <p class="love">
+                        รักแม่นะคะ 💙
+                    </p>
 
                 </div>
+
+                <button class="primary-btn next-btn" data-next="scene-4">
+                    ความทรงจำของเรา 📸
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             SCENE 4 : GALLERY
+        ====================================== -->
+
+        <section class="scene" id="scene-4">
+
+            <div class="gallery-card">
+
+                <div class="step-number">
+                    04 / 07
+                </div>
+
+                <p class="small-label">
+                    ความทรงจำของเรา
+                </p>
+
+                <h2>
+                    📸 รูปของแม่กับลูก
+                </h2>
+
+                <p class="gallery-intro">
+                    รูปอาจมีแค่ 5 รูป
+                    <br>
+                    แต่ความทรงจำดี ๆ ของเรา
+                    มีมากกว่านี้ตั้งเยอะเลยนะ 💙
+                </p>
+
+
+                <!-- Gallery -->
+
+                <div class="photo-frame">
+
+                    <img id="galleryImage"
+                         src="photo1.jpg"
+                         alt="รูปความทรงจำของแม่กับลูก">
+
+                    <div class="photo-shine"></div>
+
+                </div>
+
+
+                <div class="photo-counter">
+                    <span id="photoNumber">1</span> / 5
+                </div>
+
+
+                <p class="photo-caption" id="photoCaption">
+                    รูปแรกของความทรงจำดี ๆ ที่ลูกอยากเก็บไว้ 🤍
+                </p>
 
 
                 <div class="gallery-controls">
 
-                    <button
-                        id="prevBtn"
-                        type="button">
-
-                        ◀
-
+                    <button class="secondary-btn"
+                            id="prevPhoto">
+                        ‹ ก่อนหน้า
                     </button>
 
-                    <span id="photoNumber">
-                        1 / 5
-                    </span>
-
-                    <button
-                        id="nextBtn"
-                        type="button">
-
-                        ▶
-
+                    <button class="secondary-btn"
+                            id="nextPhoto">
+                        ถัดไป ›
                     </button>
 
                 </div>
 
 
-                <button
-                    class="main-btn"
-                    data-next="5">
-
-                    🎡 ไปหมุนวงล้อกัน
-
+                <button class="primary-btn"
+                        id="galleryNextBtn">
+                    ไปเล่นเกมกัน 🎡
                 </button>
 
             </div>
@@ -317,59 +358,52 @@
         </section>
 
 
+        <!-- =====================================
+             SCENE 5 : WHEEL
+        ====================================== -->
 
-        <!-- ==================================
-             SCENE 5
-             WHEEL
-        =================================== -->
+        <section class="scene" id="scene-5">
 
-        <section
-            id="scene5"
-            class="scene">
+            <div class="wheel-card">
 
-            <div class="card">
+                <div class="step-number">
+                    05 / 07
+                </div>
+
+                <p class="small-label">
+                    เกมเล็ก ๆ ของเรา
+                </p>
 
                 <h2>
-                    🎡 วงล้อของขวัญ
+                    🎡 วงล้อภารกิจรักแม่
                 </h2>
 
                 <p>
-                    วันนี้ลูกจะทำอะไรให้แม่ 💕
+                    วันนี้ลูกมีภารกิจเล็ก ๆ
+                    มาให้แม่กับลูกทำด้วยกัน
+                </p>
+
+                <p class="wheel-hint">
+                    ไม่ต้องกลัวนะ...
+                    <br>
+                    ไม่ว่าจะสุ่มได้อะไร
+                    <br>
+                    <strong>ลูกก็เต็มใจทำให้แม่อยู่แล้ว 💙</strong>
                 </p>
 
 
-                <div class="wheel-area">
+                <!-- Wheel -->
 
-                    <div class="pointer">
+                <div class="wheel-wrapper">
+
+                    <div class="wheel-pointer">
                         ▼
                     </div>
 
-                    <div
-                        id="wheel"
-                        class="wheel">
+                    <div class="wheel" id="wheel">
 
                         <div class="wheel-center">
-                            ❤️
-                        </div>
-
-                        <div class="wheel-label label1">
-                            🤗<br>กอด
-                        </div>
-
-                        <div class="wheel-label label2">
-                            😘<br>จุ๊บ
-                        </div>
-
-                        <div class="wheel-label label3">
-                            ❤️<br>บอกรัก
-                        </div>
-
-                        <div class="wheel-label label4">
-                            🍚<br>กินข้าว
-                        </div>
-
-                        <div class="wheel-label label5">
-                            🚗<br>เที่ยว
+                            💙
                         </div>
 
                     </div>
@@ -377,68 +411,72 @@
                 </div>
 
 
-                <div
-                    id="wheelResult"
-                    class="wheel-result">
-
-                    พร้อมหรือยัง? 💕
-
-                </div>
-
-
-                <button
-                    id="spinBtn"
-                    class="main-btn">
-
+                <button class="primary-btn spin-btn"
+                        id="spinBtn">
                     🎡 หมุนวงล้อ
-
                 </button>
 
-            </div>
-
-        </section>
-
-
-
-        <!-- ==================================
-             SCENE 6
-             TASK
-        =================================== -->
-
-        <section
-            id="scene6"
-            class="scene">
-
-            <div class="card task-card">
-
-                <div
-                    id="taskIcon"
-                    class="task-icon">
-
-                    ❤️
-
-                </div>
-
-                <div class="task-small">
-                    💕 ภารกิจของลูก 💕
-                </div>
-
-                <h1 id="taskTitle">
-                    ภารกิจรักแม่
-                </h1>
-
-                <p id="taskDescription">
-                    ภารกิจเล็ก ๆ
-                    จากหัวใจของลูก
+                <p class="spin-status" id="spinStatus">
+                    กดหมุนเพื่อสุ่มภารกิจให้แม่
                 </p>
 
+            </div>
 
-                <button
-                    id="taskBtn"
-                    class="main-btn">
+        </section>
 
-                    ❤️ ทำภารกิจสำเร็จ
 
+        <!-- =====================================
+             SCENE 6 : MISSION
+        ====================================== -->
+
+        <section class="scene" id="scene-6">
+
+            <div class="mission-card">
+
+                <div class="step-number">
+                    06 / 07
+                </div>
+
+                <div class="mission-heart">
+                    💕
+                </div>
+
+                <p class="small-label">
+                    ภารกิจของวันนี้คือ...
+                </p>
+
+                <h2 id="missionTitle">
+                    ภารกิจ
+                </h2>
+
+                <div class="mission-message"
+                     id="missionMessage">
+                </div>
+
+                <div class="mission-box">
+
+                    <div class="mission-icon"
+                         id="missionIcon">
+                        💙
+                    </div>
+
+                    <div>
+                        <strong id="missionShort">
+                            ภารกิจ
+                        </strong>
+
+                        <p>
+                            ทำด้วยกันนะ
+                            เพราะเวลาที่ได้อยู่กับแม่
+                            คือของขวัญที่ดีที่สุดแล้ว
+                        </p>
+                    </div>
+
+                </div>
+
+                <button class="primary-btn"
+                        id="completeMissionBtn">
+                    💙 ทำภารกิจสำเร็จแล้ว
                 </button>
 
             </div>
@@ -446,52 +484,73 @@
         </section>
 
 
+        <!-- =====================================
+             SCENE 7 : END
+        ====================================== -->
 
-        <!-- ==================================
-             SCENE 7
-             END
-        =================================== -->
+        <section class="scene" id="scene-7">
 
-        <section
-            id="scene7"
-            class="scene">
+            <div class="end-card">
 
-            <div class="card final-card">
-
-                <div class="flowers">
-                    🌼 🌼 🌼
+                <div class="end-flower">
+                    🌼
                 </div>
 
-                <div class="big-heart">
-                    ❤️
+                <div class="heart-big">
+                    💙
                 </div>
+
+                <div class="step-number">
+                    07 / 07
+                </div>
+
+                <p class="small-label">
+                    ภารกิจสำเร็จแล้ว!
+                </p>
 
                 <h1>
-                    รักแม่ที่สุดในโลก 💕
+                    สุขสันต์วันแม่นะคะ 🌼
                 </h1>
 
-                <p class="final-message">
+                <div class="final-message">
 
-                    ขอบคุณสำหรับทุกอย่าง<br>
+                    <p>
+                        วันนี้แม่ได้ดอกมะลิแล้วหนึ่งดอก
+                        <br>
+                        แต่ลูกอยากให้แม่รู้ว่า...
+                    </p>
 
-                    ขอบคุณที่เป็นแม่ของหนู<br><br>
+                    <p class="final-highlight">
+                        ทุกวันที่มีแม่อยู่ข้าง ๆ
+                        <br>
+                        ก็เหมือนมีดอกมะลิ
+                        <br>
+                        บานอยู่ในหัวใจลูกเสมอ 🤍
+                    </p>
 
-                    หนูอาจจะไม่ได้พูดบ่อย ๆ<br>
+                    <p>
+                        ขอบคุณที่เป็น “แม่” ของลูกนะ
+                    </p>
 
-                    แต่หนูรักแม่มากนะ ❤️
+                    <p>
+                        ของขวัญชิ้นนี้อาจไม่ได้มีราคาแพง
+                        <br>
+                        แต่ลูกตั้งใจทำให้แม่ด้วยหัวใจ
+                    </p>
 
-                </p>
+                    <p class="final-love">
+                        รักแม่ที่สุดเลย 💙
+                    </p>
 
-                <div class="final-sign">
-                    🌼 สุขสันต์วันแม่ 🌼
                 </div>
 
-                <button
-                    id="restartBtn"
-                    class="main-btn">
+                <div class="final-flower-row">
+                    🌼 🤍 🌼 🤍 🌼
+                </div>
 
+                <button class="secondary-btn"
+                        id="replayBtn">
                     🔄 เล่นอีกครั้ง
-
                 </button>
 
             </div>
@@ -501,7 +560,37 @@
     </main>
 
 
-    <script src="./script.js"></script>
+    <!-- =========================================
+         POPUP
+    ========================================== -->
+
+    <div class="popup" id="popup">
+
+        <div class="popup-card">
+
+            <div class="popup-icon">
+                🎉
+            </div>
+
+            <h3 id="popupTitle">
+                เยี่ยมเลย!
+            </h3>
+
+            <p id="popupText">
+                ภารกิจของเรา
+            </p>
+
+            <button class="primary-btn"
+                    id="popupClose">
+                ไปต่อ 💙
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
 
 </body>
 </html>
