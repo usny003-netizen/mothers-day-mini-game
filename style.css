@@ -1,7 +1,12 @@
-/* ================================
-   Mother's Day Surprise 🌷
-   Step 2 - Main Design
-================================ */
+/* =====================================================
+   MOTHER'S DAY MINI GAME
+   STYLE VERSION 1.0
+===================================================== */
+
+
+/* =====================================================
+   RESET
+===================================================== */
 
 * {
     margin: 0;
@@ -9,376 +14,1265 @@
     box-sizing: border-box;
 }
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
+
+html {
+    scroll-behavior: smooth;
 }
 
+
 body {
-    font-family: "Noto Sans Thai", "Prompt", sans-serif;
-    background: linear-gradient(
-        135deg,
-        #fff7f9 0%,
-        #fff0f4 50%,
-        #fdf5ee 100%
-    );
 
-    color: #6b4b4b;
-    overflow-x: hidden;
-}
-
-/* ================================
-   Main Container
-================================ */
-
-.container {
     min-height: 100vh;
 
-    display: flex;
+    font-family:
+        "Noto Sans Thai",
+        sans-serif;
+
+    color: #765f65;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff8fa,
+            #fff1f5,
+            #fff8ed
+        );
+
+    overflow-x: hidden;
+
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+#app {
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   SCENE
+===================================================== */
+
+.scene {
+
+    display: none;
+
+    width: 100%;
+    min-height: 100vh;
+
     justify-content: center;
     align-items: center;
 
-    padding: 30px 20px;
+    padding: 25px 15px;
 
     position: relative;
-    overflow: hidden;
+
 }
 
-/* ================================
-   Background Decorations
-================================ */
 
-.container::before,
-.container::after {
-    content: "";
+.scene.active {
+
+    display: flex;
+
+    animation:
+        sceneIn 0.6s ease;
+
+}
+
+
+@keyframes sceneIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   START SCREEN
+===================================================== */
+
+#scene-start {
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            #ffe0e9 0,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            #ffe7ca 0,
+            transparent 35%
+        );
+
+}
+
+
+.background-decoration span {
+
     position: absolute;
 
-    width: 280px;
-    height: 280px;
+    font-size: 25px;
 
-    border-radius: 50%;
+    opacity: 0.55;
 
-    filter: blur(60px);
+    animation:
+        decorationFloat 4s ease-in-out infinite;
 
-    opacity: 0.45;
-
-    z-index: 0;
 }
 
-.container::before {
-    background: #ffd6e2;
 
-    top: -100px;
-    left: -100px;
+.background-decoration span:nth-child(1) {
+
+    top: 12%;
+    left: 10%;
+
 }
 
-.container::after {
-    background: #ffe4c7;
 
-    bottom: -100px;
-    right: -100px;
+.background-decoration span:nth-child(2) {
+
+    top: 20%;
+    right: 12%;
+
+    animation-delay: 1s;
+
 }
 
-/* ================================
-   Surprise Card
-================================ */
 
-.surprise-card {
+.background-decoration span:nth-child(3) {
+
+    bottom: 20%;
+    left: 12%;
+
+    animation-delay: 2s;
+
+}
+
+
+.background-decoration span:nth-child(4) {
+
+    bottom: 12%;
+    right: 15%;
+
+    animation-delay: 1.5s;
+
+}
+
+
+.background-decoration span:nth-child(5) {
+
+    top: 50%;
+    right: 5%;
+
+    animation-delay: 2.5s;
+
+}
+
+
+@keyframes decorationFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-12px)
+            rotate(8deg);
+
+    }
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.surprise-card,
+.scene-card {
+
     width: 100%;
-    max-width: 430px;
+    max-width: 440px;
 
-    padding: 45px 28px 40px;
+    padding: 38px 25px;
 
-    background: rgba(255, 255, 255, 0.78);
+    background:
+        rgba(255,255,255,0.86);
 
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    border:
+        1px solid
+        rgba(255,255,255,0.95);
 
     border-radius: 30px;
 
-    box-shadow:
-        0 20px 60px rgba(180, 110, 130, 0.15),
-        0 5px 20px rgba(180, 110, 130, 0.08);
-
-    backdrop-filter: blur(12px);
-
     text-align: center;
+
+    box-shadow:
+        0 25px 70px
+        rgba(177,105,128,0.14);
+
+    backdrop-filter:
+        blur(15px);
 
     position: relative;
 
     z-index: 2;
+
 }
 
-/* ================================
-   Flower
-================================ */
 
-.flower {
-    font-size: 58px;
+/* =====================================================
+   START CARD
+===================================================== */
 
-    margin-bottom: 15px;
+.flower-big {
 
-    animation: gentleFloat 3s ease-in-out infinite;
+    font-size: 65px;
+
+    margin-bottom: 8px;
+
+    animation:
+        flowerFloat 3s ease-in-out infinite;
+
 }
 
-/* ================================
-   Heading
-================================ */
 
-.title {
-    font-size: 30px;
+@keyframes flowerFloat {
 
-    font-weight: 700;
+    0%,
+    100% {
 
-    color: #c76b83;
+        transform:
+            translateY(0);
 
-    margin-bottom: 12px;
+    }
 
-    letter-spacing: 0.5px;
+    50% {
+
+        transform:
+            translateY(-10px);
+
+    }
+
 }
 
-.subtitle {
-    font-size: 17px;
 
-    color: #856b6b;
+.small-title {
 
-    line-height: 1.8;
+    font-size: 14px;
 
-    margin-bottom: 28px;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    color: #c78899;
+
+    margin-bottom: 8px;
+
 }
 
-/* ================================
-   Mom Name
-================================ */
+
+h1 {
+
+    font-family: "Itim", cursive;
+
+    font-size: 37px;
+
+    color: #c56882;
+
+    margin-bottom: 5px;
+
+}
+
 
 .mom-name {
-    display: inline-block;
 
-    font-size: 26px;
+    font-family: "Itim", cursive;
 
-    font-weight: 700;
+    font-size: 34px;
 
-    color: #b95772;
+    color: #b75570;
 
-    margin: 5px 0 20px;
+    margin-bottom: 22px;
 
-    position: relative;
 }
 
-.mom-name::after {
-    content: "";
 
-    position: absolute;
+.intro-text {
 
-    left: 10%;
-    right: 10%;
-
-    bottom: -7px;
-
-    height: 2px;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        #e99aae,
-        transparent
-    );
-}
-
-/* ================================
-   Message
-================================ */
-
-.message {
-    font-size: 16px;
+    font-size: 18px;
 
     line-height: 1.9;
 
-    color: #765f5f;
+    color: #806b70;
 
-    margin-bottom: 30px;
 }
 
-/* ================================
-   Open Button
-================================ */
 
-.open-btn {
+.hint {
+
+    margin-top: 20px;
+
+    font-size: 12px;
+
+    color: #aa9499;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.main-button {
+
     border: none;
 
-    padding: 15px 34px;
+    padding: 14px 28px;
 
     border-radius: 50px;
 
-    background: linear-gradient(
-        135deg,
-        #e98fa5,
-        #d96f8b
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #e993aa,
+            #d96e8b
+        );
 
     color: white;
 
-    font-size: 17px;
-
     font-family: inherit;
+
+    font-size: 16px;
 
     font-weight: 600;
 
     cursor: pointer;
 
     box-shadow:
-        0 10px 25px rgba(217, 111, 139, 0.25);
+        0 10px 25px
+        rgba(217,110,139,0.25);
 
     transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+        0.25s ease;
+
 }
 
-.open-btn:hover {
-    transform: translateY(-3px);
+
+.main-button:hover {
+
+    transform:
+        translateY(-3px);
 
     box-shadow:
-        0 15px 30px rgba(217, 111, 139, 0.35);
+        0 15px 30px
+        rgba(217,110,139,0.35);
+
 }
 
-.open-btn:active {
-    transform: scale(0.96);
+
+.main-button:active {
+
+    transform:
+        scale(0.96);
+
 }
 
-/* ================================
-   Small Heart
-================================ */
 
-.heart {
-    display: inline-block;
+.main-button:disabled {
 
-    margin-left: 5px;
+    opacity: 0.6;
 
-    animation: heartbeat 1.5s ease-in-out infinite;
+    cursor: not-allowed;
+
 }
 
-/* ================================
-   Bottom Text
-================================ */
 
-.bottom-text {
-    margin-top: 25px;
+/* =====================================================
+   SCENE TEXT
+===================================================== */
+
+.scene-label {
 
     font-size: 13px;
 
-    color: #a28b8b;
+    color: #c48798;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 5px;
+
 }
 
-/* ================================
-   Floating Decorations
-================================ */
 
-.decor {
-    position: absolute;
+h2 {
+
+    font-family: "Itim", cursive;
+
+    font-size: 30px;
+
+    color: #bd617a;
+
+    margin-bottom: 15px;
+
+}
+
+
+.scene-description {
+
+    line-height: 1.9;
+
+    font-size: 15px;
+
+}
+
+
+/* =====================================================
+   PLANT
+===================================================== */
+
+.plant-area {
+
+    height: 190px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.plant {
+
+    font-size: 90px;
+
+    transform:
+        scale(0.7);
+
+    transition:
+        0.8s ease;
+
+}
+
+
+.plant-flower {
+
+    opacity: 0;
+
+    transform:
+        scale(0);
+
+    transition:
+        0.8s ease;
+
+}
+
+
+.plant.grow-1 {
+
+    transform:
+        scale(0.82);
+
+}
+
+
+.plant.grow-2 {
+
+    transform:
+        scale(0.95);
+
+}
+
+
+.plant.grow-3 {
+
+    transform:
+        scale(1.1);
+
+}
+
+
+.plant.grow-3
+.plant-flower {
+
+    opacity: 1;
+
+    transform:
+        scale(1);
+
+}
+
+
+/* =====================================================
+   WATER DOTS
+===================================================== */
+
+.water-dots {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.water-dots span {
+
+    width: 11px;
+
+    height: 11px;
+
+    border-radius: 50%;
+
+    background: #eadde0;
+
+    transition:
+        0.3s ease;
+
+}
+
+
+.water-dots span.done {
+
+    background: #79b8d0;
+
+    transform:
+        scale(1.25);
+
+}
+
+
+/* =====================================================
+   WATER TEXT
+===================================================== */
+
+.water-text {
+
+    min-height: 70px;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* =====================================================
+   BIG FLOWER
+===================================================== */
+
+.big-flower {
+
+    font-size: 100px;
+
+    margin: 20px 0;
+
+    animation:
+        flowerFloat 3s ease-in-out infinite;
+
+}
+
+
+.love-message {
+
+    line-height: 1.9;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* =====================================================
+   GALLERY
+===================================================== */
+
+.photo-frame {
+
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
+
+    background: #fff;
+
+    padding: 8px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.1);
+
+    margin-bottom: 15px;
+
+    overflow: hidden;
+
+}
+
+
+.photo-frame img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+
+    transition:
+        0.3s ease;
+
+}
+
+
+.photo-frame img.change {
+
+    opacity: 0;
+
+    transform:
+        scale(0.95);
+
+}
+
+
+.photo-counter {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 25px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.circle-button {
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f7dce3;
+
+    color: #b85c75;
 
     font-size: 25px;
 
-    opacity: 0.65;
+    cursor: pointer;
 
-    z-index: 1;
+}
+
+
+.photo-caption {
+
+    min-height: 55px;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* =====================================================
+   WHEEL
+===================================================== */
+
+.wheel-wrapper {
+
+    width: 300px;
+    height: 300px;
+
+    margin:
+        25px auto;
+
+    position: relative;
+
+}
+
+
+.wheel-pointer {
+
+    position: absolute;
+
+    z-index: 10;
+
+    top: -14px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color: #c85f7a;
+
+    font-size: 30px;
+
+}
+
+
+.wheel {
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border:
+        8px solid white;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,0.12);
+
+    background:
+        conic-gradient(
+            #f5b8c8 0deg 72deg,
+            #f7d7a8 72deg 144deg,
+            #a9d9dc 144deg 216deg,
+            #c8b8e8 216deg 288deg,
+            #b9dba9 288deg 360deg
+        );
+
+    transition:
+        transform 4s
+        cubic-bezier(
+            0.12,
+            0.75,
+            0.15,
+            1
+        );
+
+}
+
+
+.wheel-center {
+
+    position: absolute;
+
+    width: 65px;
+    height: 65px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+
+    z-index: 5;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0,0,0,0.15);
+
+}
+
+
+/* =====================================================
+   WHEEL LABEL
+===================================================== */
+
+.wheel-label {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 100px;
+
+    margin-left: -50px;
+    margin-top: -12px;
+
+    text-align: center;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-shadow:
+        0 1px 3px
+        rgba(0,0,0,0.2);
 
     pointer-events: none;
+
 }
 
-.decor-1 {
-    top: 12%;
-    left: 8%;
 
-    transform: rotate(-15deg);
+/* =====================================================
+   SPIN STATUS
+===================================================== */
+
+.spin-status {
+
+    margin-top: 15px;
+
+    font-size: 14px;
+
+    color: #9b8188;
+
 }
 
-.decor-2 {
-    top: 18%;
-    right: 8%;
 
-    transform: rotate(15deg);
+/* =====================================================
+   MISSION
+===================================================== */
+
+.mission-icon {
+
+    font-size: 70px;
+
+    margin-bottom: 10px;
+
 }
 
-.decor-3 {
-    bottom: 15%;
-    left: 10%;
 
-    transform: rotate(10deg);
+.mission-short {
+
+    font-size: 18px;
+
+    color: #bd647c;
+
+    font-weight: 600;
+
+    margin-bottom: 20px;
+
 }
 
-.decor-4 {
-    bottom: 10%;
-    right: 10%;
 
-    transform: rotate(-10deg);
+.mission-box {
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background:
+        #fff5f7;
+
+    margin-bottom: 25px;
+
+    line-height: 1.9;
+
+    font-size: 15px;
+
 }
 
-/* ================================
-   Animations
-================================ */
 
-@keyframes gentleFloat {
-    0%,
-    100% {
-        transform: translateY(0);
-    }
+/* =====================================================
+   POPUP
+===================================================== */
 
-    50% {
-        transform: translateY(-8px);
-    }
+.popup {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(90,55,65,0.45);
+
+    backdrop-filter:
+        blur(6px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        0.3s ease;
+
+    z-index: 2000;
+
 }
+
+
+.popup.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+.popup-box {
+
+    width: 100%;
+    max-width: 360px;
+
+    padding: 35px 25px;
+
+    border-radius: 28px;
+
+    background: white;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,0.2);
+
+    transform:
+        scale(0.8);
+
+    transition:
+        0.3s ease;
+
+}
+
+
+.popup.show
+.popup-box {
+
+    transform:
+        scale(1);
+
+}
+
+
+.popup-icon {
+
+    font-size: 60px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.popup-box h2 {
+
+    margin-bottom: 10px;
+
+}
+
+
+.popup-box p {
+
+    line-height: 1.8;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+.final-card {
+
+    padding-top: 45px;
+
+}
+
+
+.final-flowers {
+
+    font-size: 35px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.final-message {
+
+    line-height: 2;
+
+    font-size: 15px;
+
+}
+
+
+.final-message p {
+
+    margin-bottom: 15px;
+
+}
+
+
+.final-message strong {
+
+    display: block;
+
+    font-family:
+        "Itim",
+        cursive;
+
+    font-size: 30px;
+
+    color: #d2637e;
+
+    margin-top: 15px;
+
+}
+
+
+.final-heart {
+
+    font-size: 65px;
+
+    margin: 20px 0;
+
+    animation:
+        heartbeat 1.5s infinite;
+
+}
+
 
 @keyframes heartbeat {
+
     0%,
     100% {
-        transform: scale(1);
+
+        transform:
+            scale(1);
+
     }
 
     50% {
-        transform: scale(1.2);
+
+        transform:
+            scale(1.15);
+
     }
+
 }
 
-/* ================================
-   Mobile
-================================ */
+
+.signature {
+
+    color: #a48b92;
+
+    margin-bottom: 25px;
+
+}
+
+
+.outline-button {
+
+    padding: 11px 22px;
+
+    border-radius: 50px;
+
+    background: white;
+
+    border: 1px solid #df9aaa;
+
+    color: #c5677f;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+}
+
+
+/* =====================================================
+   FLOATING EFFECT
+===================================================== */
+
+#floatingContainer {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 3000;
+
+}
+
+
+.floating-item {
+
+    position: absolute;
+
+    bottom: -50px;
+
+    opacity: 0;
+
+    animation:
+        floatingUp
+        5s
+        ease-out
+        forwards;
+
+}
+
+
+@keyframes floatingUp {
+
+    0% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+
+    }
+
+    15% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media (max-width: 480px) {
 
-    .container {
-        padding: 20px 15px;
+    .scene {
+
+        padding:
+            18px 12px;
+
     }
 
-    .surprise-card {
-        padding: 38px 22px 32px;
 
-        border-radius: 26px;
+    .surprise-card,
+    .scene-card {
+
+        padding:
+            32px 20px;
+
+        border-radius: 25px;
+
     }
 
-    .flower {
-        font-size: 50px;
+
+    h1 {
+
+        font-size: 32px;
+
     }
 
-    .title {
-        font-size: 26px;
+
+    h2 {
+
+        font-size: 27px;
+
     }
+
 
     .mom-name {
-        font-size: 24px;
+
+        font-size: 31px;
+
     }
 
-    .subtitle,
-    .message {
-        font-size: 15px;
+
+    .wheel-wrapper,
+    .wheel {
+
+        width: 270px;
+        height: 270px;
+
     }
 
-    .open-btn {
-        width: 100%;
 
-        padding: 14px 20px;
+    .wheel-label {
+
+        width: 90px;
+
+        margin-left: -45px;
+
+        font-size: 11px;
+
     }
 
-    .decor {
-        font-size: 20px;
+
+    .photo-frame {
+
+        aspect-ratio: 4 / 5;
+
     }
+
 }
