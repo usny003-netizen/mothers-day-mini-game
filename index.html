@@ -5,61 +5,70 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+        content="width=device-width, initial-scale=1.0">
 
     <title>🌼 ของขวัญวันแม่จากหนู</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 
-    <!-- พื้นหลัง -->
+    <!-- =========================
+         BACKGROUND
+    ========================== -->
+
     <div class="sky">
 
         <div class="cloud cloud1">☁️</div>
         <div class="cloud cloud2">☁️</div>
         <div class="cloud cloud3">☁️</div>
 
-        <div class="floating flower-float f1">🌼</div>
-        <div class="floating flower-float f2">🌼</div>
+        <div class="float flower-f1">🌼</div>
+        <div class="float flower-f2">🌼</div>
 
-        <div class="floating heart-float h1">💗</div>
-        <div class="floating heart-float h2">💕</div>
+        <div class="float heart-h1">💗</div>
+        <div class="float heart-h2">💕</div>
 
     </div>
 
 
-    <!-- เพลง -->
-    <audio id="bgMusic" loop>
-        <source src="music.mp3" type="audio/mpeg">
+    <!-- =========================
+         MUSIC
+    ========================== -->
+
+    <audio id="bgMusic" loop preload="auto">
+        <source src="./music.mp3" type="audio/mpeg">
     </audio>
 
-    <button id="musicBtn"
-            class="music-btn"
-            onclick="toggleMusic()">
+    <button
+        id="musicBtn"
+        class="music-btn"
+        type="button">
         🎵
     </button>
 
 
-    <!-- ================================
+    <!-- =========================
          GAME
-    ================================= -->
+    ========================== -->
 
     <main id="game">
 
 
-        <!-- ================================
-             SCENE 1 : ต้นมะลิ
-        ================================= -->
+        <!-- ==================================
+             SCENE 1
+             ต้นมะลิ
+        =================================== -->
 
-        <section id="scene1"
-                 class="scene active">
+        <section
+            id="scene1"
+            class="scene active">
 
-            <div class="scene-content">
+            <div class="card">
 
-                <div class="small-title">
-                    🌼 Mother's Day 🌼
+                <div class="mini-title">
+                    🌼 MOTHER'S DAY 🌼
                 </div>
 
                 <h1>
@@ -67,36 +76,32 @@
                     จากหัวใจของหนู 💕
                 </h1>
 
-                <p class="subtitle">
+                <p class="intro">
                     ก่อนจะไปเจอของขวัญของแม่<br>
                     เรามาปลูกต้นมะลิกันก่อนนะ 🌱
                 </p>
 
 
-                <!-- ต้นมะลิ -->
+                <!-- ต้นไม้ -->
 
                 <div class="tree-area">
 
-                    <div id="tree"
-                         class="tree tree-stage-0">
+                    <div
+                        id="tree"
+                        class="tree stage0">
 
-                        <div class="tree-plant">
+                        <div class="plant">
 
                             <div class="branch branch-left"></div>
-
                             <div class="branch branch-right"></div>
 
                             <span class="leaf leaf1">🌿</span>
-
                             <span class="leaf leaf2">🌿</span>
-
                             <span class="leaf leaf3">🌿</span>
 
-                            <span class="flower flower1">🌼</span>
-
-                            <span class="flower flower2">🌼</span>
-
-                            <span class="flower flower3">🌼</span>
+                            <span class="jasmine jasmine1">🌼</span>
+                            <span class="jasmine jasmine2">🌼</span>
+                            <span class="jasmine jasmine3">🌼</span>
 
                         </div>
 
@@ -109,17 +114,19 @@
                 </div>
 
 
-                <div id="waterText"
-                     class="water-text">
+                <div
+                    id="waterText"
+                    class="water-text">
 
                     ต้องรดน้ำอีก 3 ครั้ง 💧
 
                 </div>
 
 
-                <button id="waterBtn"
-                        class="main-btn water-btn"
-                        onclick="waterPlant()">
+                <button
+                    id="waterBtn"
+                    class="main-btn water-btn"
+                    type="button">
 
                     💧 รดน้ำต้นมะลิ
 
@@ -131,14 +138,16 @@
 
 
 
-        <!-- ================================
-             SCENE 2 : มะลิบาน
-        ================================= -->
+        <!-- ==================================
+             SCENE 2
+             มะลิบาน
+        =================================== -->
 
-        <section id="scene2"
-                 class="scene">
+        <section
+            id="scene2"
+            class="scene">
 
-            <div class="scene-content">
+            <div class="card">
 
                 <div class="jasmine-big">
                     🌼
@@ -149,18 +158,17 @@
                 </h1>
 
                 <p class="message">
-
                     เพราะความรักของหนู<br>
                     ที่มีให้แม่ทุกวัน 💗
-
                 </p>
 
-                <div class="jasmine-garden">
+                <div class="garden">
                     🌿 🌼 🌿 🌼 🌿
                 </div>
 
-                <button class="main-btn"
-                        onclick="goToScene(3)">
+                <button
+                    class="main-btn"
+                    data-next="3">
 
                     💌 ไปหาแม่กัน
 
@@ -172,16 +180,18 @@
 
 
 
-        <!-- ================================
-             SCENE 3 : แม่
-        ================================= -->
+        <!-- ==================================
+             SCENE 3
+             แม่
+        =================================== -->
 
-        <section id="scene3"
-                 class="scene">
+        <section
+            id="scene3"
+            class="scene">
 
-            <div class="scene-content">
+            <div class="card">
 
-                <div class="mother-avatar">
+                <div class="mother">
                     👩🏻
                 </div>
 
@@ -191,20 +201,21 @@
 
                     <br><br>
 
-                    วันนี้หนูมีอะไร
+                    วันนี้หนูมีอะไร<br>
                     อยากบอกแม่
 
                 </div>
 
-                <div class="love-message">
+                <div class="love-text">
 
                     ขอบคุณแม่ที่รัก<br>
                     และดูแลหนูมาตลอดนะ ❤️
 
                 </div>
 
-                <button class="main-btn"
-                        onclick="goToScene(4)">
+                <button
+                    class="main-btn"
+                    data-next="4">
 
                     📸 ดูความทรงจำของเรา
 
@@ -216,14 +227,16 @@
 
 
 
-        <!-- ================================
-             SCENE 4 : GALLERY
-        ================================= -->
+        <!-- ==================================
+             SCENE 4
+             GALLERY
+        =================================== -->
 
-        <section id="scene4"
-                 class="scene">
+        <section
+            id="scene4"
+            class="scene">
 
-            <div class="scene-content">
+            <div class="card gallery-card">
 
                 <h2>
                     📸 ความทรงจำของเรา
@@ -237,16 +250,27 @@
 
                 <div class="gallery">
 
-                    <img id="galleryImage"
-                         src="photo1.jpg"
-                         alt="รูปของแม่">
+                    <img
+                        id="galleryImage"
+                        src="./photo1.jpg"
+                        alt="ความทรงจำของแม่">
+
+                    <div
+                        id="imageError"
+                        class="image-error">
+
+                        🌼 รูปนี้กำลังเดินทางมาหาเรา 🌼
+
+                    </div>
 
                 </div>
 
 
-                <div class="dots">
+                <div
+                    id="dots"
+                    class="dots">
 
-                    <span class="dot active-dot"></span>
+                    <span class="dot active"></span>
                     <span class="dot"></span>
                     <span class="dot"></span>
                     <span class="dot"></span>
@@ -255,21 +279,34 @@
                 </div>
 
 
-                <div class="gallery-buttons">
+                <div class="gallery-controls">
 
-                    <button onclick="previousPhoto()">
+                    <button
+                        id="prevBtn"
+                        type="button">
+
                         ◀
+
                     </button>
 
-                    <button onclick="nextPhoto()">
+                    <span id="photoNumber">
+                        1 / 5
+                    </span>
+
+                    <button
+                        id="nextBtn"
+                        type="button">
+
                         ▶
+
                     </button>
 
                 </div>
 
 
-                <button class="main-btn"
-                        onclick="goToScene(5)">
+                <button
+                    class="main-btn"
+                    data-next="5">
 
                     🎡 ไปหมุนวงล้อกัน
 
@@ -281,14 +318,16 @@
 
 
 
-        <!-- ================================
-             SCENE 5 : WHEEL
-        ================================= -->
+        <!-- ==================================
+             SCENE 5
+             WHEEL
+        =================================== -->
 
-        <section id="scene5"
-                 class="scene">
+        <section
+            id="scene5"
+            class="scene">
 
-            <div class="scene-content">
+            <div class="card">
 
                 <h2>
                     🎡 วงล้อของขวัญ
@@ -299,39 +338,38 @@
                 </p>
 
 
-                <div class="wheel-box">
+                <div class="wheel-area">
 
                     <div class="pointer">
                         ▼
                     </div>
 
-
-                    <div id="wheel"
-                         class="wheel">
+                    <div
+                        id="wheel"
+                        class="wheel">
 
                         <div class="wheel-center">
                             ❤️
                         </div>
 
-
-                        <div class="wheel-text text1">
-                            🤗 กอด
+                        <div class="wheel-label label1">
+                            🤗<br>กอด
                         </div>
 
-                        <div class="wheel-text text2">
-                            😘 จุ๊บ
+                        <div class="wheel-label label2">
+                            😘<br>จุ๊บ
                         </div>
 
-                        <div class="wheel-text text3">
-                            ❤️ บอกรัก
+                        <div class="wheel-label label3">
+                            ❤️<br>บอกรัก
                         </div>
 
-                        <div class="wheel-text text4">
-                            🍚 กินข้าว
+                        <div class="wheel-label label4">
+                            🍚<br>กินข้าว
                         </div>
 
-                        <div class="wheel-text text5">
-                            🚗 เที่ยว
+                        <div class="wheel-label label5">
+                            🚗<br>เที่ยว
                         </div>
 
                     </div>
@@ -339,17 +377,18 @@
                 </div>
 
 
-                <div id="wheelResult"
-                     class="wheel-result">
+                <div
+                    id="wheelResult"
+                    class="wheel-result">
 
                     พร้อมหรือยัง? 💕
 
                 </div>
 
 
-                <button id="spinBtn"
-                        class="main-btn"
-                        onclick="spinWheel()">
+                <button
+                    id="spinBtn"
+                    class="main-btn">
 
                     🎡 หมุนวงล้อ
 
@@ -361,42 +400,44 @@
 
 
 
-        <!-- ================================
-             SCENE 6 : TASK
-        ================================= -->
+        <!-- ==================================
+             SCENE 6
+             TASK
+        =================================== -->
 
-        <section id="scene6"
-                 class="scene">
+        <section
+            id="scene6"
+            class="scene">
 
-            <div class="scene-content">
+            <div class="card task-card">
 
-                <div id="taskIcon"
-                     class="task-icon">
+                <div
+                    id="taskIcon"
+                    class="task-icon">
 
-                    🤗
+                    ❤️
 
                 </div>
 
+                <div class="task-small">
+                    💕 ภารกิจของลูก 💕
+                </div>
 
                 <h1 id="taskTitle">
                     ภารกิจรักแม่
                 </h1>
 
-
                 <p id="taskDescription">
                     ภารกิจเล็ก ๆ
-                    จากหัวใจของลูก 💕
+                    จากหัวใจของลูก
                 </p>
 
 
-                <div id="taskArea"></div>
+                <button
+                    id="taskBtn"
+                    class="main-btn">
 
-
-                <button id="taskBtn"
-                        class="main-btn"
-                        onclick="completeTask()">
-
-                    ❤️ ทำภารกิจ
+                    ❤️ ทำภารกิจสำเร็จ
 
                 </button>
 
@@ -406,29 +447,28 @@
 
 
 
-        <!-- ================================
-             SCENE 7 : END
-        ================================= -->
+        <!-- ==================================
+             SCENE 7
+             END
+        =================================== -->
 
-        <section id="scene7"
-                 class="scene">
+        <section
+            id="scene7"
+            class="scene">
 
-            <div class="scene-content">
+            <div class="card final-card">
 
-                <div class="final-flowers">
+                <div class="flowers">
                     🌼 🌼 🌼
                 </div>
-
 
                 <div class="big-heart">
                     ❤️
                 </div>
 
-
                 <h1>
                     รักแม่ที่สุดในโลก 💕
                 </h1>
-
 
                 <p class="final-message">
 
@@ -442,16 +482,13 @@
 
                 </p>
 
-
                 <div class="final-sign">
-
                     🌼 สุขสันต์วันแม่ 🌼
-
                 </div>
 
-
-                <button class="main-btn"
-                        onclick="restartGame()">
+                <button
+                    id="restartBtn"
+                    class="main-btn">
 
                     🔄 เล่นอีกครั้ง
 
@@ -464,7 +501,7 @@
     </main>
 
 
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 
 </body>
 </html>
